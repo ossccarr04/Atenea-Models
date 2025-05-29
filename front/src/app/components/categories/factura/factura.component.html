@@ -1,0 +1,18 @@
+<div class="factura container border rounded shadow p-4 bg-white">
+  <div id="facturaPDF">
+    <h3 class="text-center text-primary mb-3">Factura de Compra</h3>
+
+    <div class="mb-2">
+      <p *ngIf="codigo"><strong>Código:</strong> {{ codigo }}</p>
+      <p *ngIf="entallado"><strong>Entallado:</strong> {{ entallado }}</p>
+      <p *ngIf="manga"><strong>Manga:</strong> {{ manga }}</p>
+      <p *ngIf="cuello"><strong>Cuello:</strong> {{ cuello }}</p>
+      <p *ngIf="largo"><strong>Largo:</strong> {{ largo }}</p>
+    </div>
+  </div>
+  <div class="text-center mt-3">
+    <button class="btn btn-success hide-in-pdf" (click)="descargarFactura()">
+      <i class="bi bi-download"></i> Descargar Factura PDF
+    </button>
+  </div>
+</div>

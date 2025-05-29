@@ -1,0 +1,34 @@
+<br>
+<div>
+    <div id="popup" *ngIf="showPopup" class="popup">
+        <div class="popup-content">
+            <h2>{{ popupMessage }}</h2>
+            <app-factura
+                [codigo]="codigoCamiseta">
+            </app-factura>
+            <button (click)="closePopup()">Aceptar</button>
+        </div>
+    </div>
+
+    <div id="accesorios" class="categoria">
+        <h2>Otros</h2>
+        <p>¡Deja volar tu imaginación! Sube la imagen con el diseño que más te
+            guste y nosotros lo haremos realidad.</p>
+
+        <input type="email" (change)="onEmailChange($event)"
+            placeholder="Ingresa tu correo" required />
+
+        <input type="file" accept="image/png, image/jpeg, image/jpg"
+            (change)="onFileSelected($event)" />
+
+        <div *ngIf="imagePreview">
+            <h3>Vista previa:</h3>
+            <img [src]="imagePreview" alt="Vista previa del diseño"
+                width="200" />
+        </div>
+
+        <button (click)="onSendEmail()"
+            [disabled]="!selectedFile || !userEmail">Enviar</button>
+    </div>
+</div>
+<br>

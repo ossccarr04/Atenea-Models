@@ -1,0 +1,13 @@
+.factura {
+  max-width: 600px;
+  margin: 20px auto;
+  border: 2px solid #007bff;
+}
+
+.factura h3 {
+  font-weight: bold;
+}
+
+.factura p {
+  font-size: 16px;
+}

@@ -1,0 +1,45 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CamisetasComponent } from './camisetas/camisetas.component';
+import { ChaquetasComponent } from './chaquetas/chaquetas.component';
+import { FaldasComponent } from './faldas/faldas.component';
+import { OtrosComponent } from './otros/otros.component';
+import { PantalonesComponent } from './pantalones/pantalones.component';
+import { TopsComponent } from './tops/tops.component';
+import { VestidosComponent } from './vestidos/vestidos.component';
+import { ZapatillasComponent } from './zapatillas/zapatillas.component';
+import { ClothingOptionsModule } from './clothing-options/clothing-options.module';
+import { FacturaComponent } from './factura/factura.component';
+import { FormsModule } from '@angular/forms';
+
+
+
+@NgModule({
+  declarations: [
+    CamisetasComponent,
+    ChaquetasComponent,
+    FaldasComponent,
+    OtrosComponent,
+    PantalonesComponent,
+    TopsComponent,
+    VestidosComponent,
+    ZapatillasComponent,
+    FacturaComponent
+  ],
+  imports: [
+    CommonModule,
+    ClothingOptionsModule,
+    FormsModule
+  ],
+  exports: [
+    CamisetasComponent,
+    ChaquetasComponent,
+    FaldasComponent,
+    OtrosComponent,
+    PantalonesComponent,
+    TopsComponent,
+    VestidosComponent,
+    ZapatillasComponent,
+  ]
+})
+export class CategoriesModule { }

@@ -1,0 +1,9 @@
+<div class="mb-3 d-flex align-items-center">
+    <label class="form-label fw-semibold me-2">Cuello</label>
+    <select class="form-select" [value]="modelo" (change)="actualizarSeleccion($event)">
+      <option *ngFor="let opcion of opciones" [value]="opcion">
+        {{ opcion }}
+      </option>
+    </select>
+  </div>
+  
