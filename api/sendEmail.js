@@ -1,7 +1,10 @@
 import nodemailer from 'nodemailer';
 import formidable from 'formidable';
+import fs from 'fs';
+import path from 'path';
 import dotenv from 'dotenv';
-dotenv.config();
+
+//dotenv.config();
 
 export const config = {
   api: {
