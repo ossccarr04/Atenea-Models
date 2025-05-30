@@ -28,4 +28,8 @@ export class ProductComponent {
     this.route.navigate(['/pantalones']);
   }
 
+  navigateToFaldas(){
+    this.route.navigate(['/faldas']);
+  }
+
 }

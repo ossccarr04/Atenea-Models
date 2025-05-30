@@ -14,6 +14,7 @@ export class FacturaComponent{
   @Input() manga!: string;
   @Input() cuello!: string;
   @Input() largo!: string;
+  @Input() precio!: number;
 
 
   descargarFactura() {

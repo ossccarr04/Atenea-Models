@@ -1,1 +1,79 @@
-<p>faldas works!</p>
+<div class="camiseta-container container mt-4">
+  <h1 class="fw-bold text-center">Faldas</h1>
+  <p class="texto-explicativo text-center mb-3"
+    *ngIf="firstLoad==false; else firstLoadTemplate">
+    Cada parte modificada tiene un coste adicional de {{precio}} €.
+  </p>
+
+  <ng-template #firstLoadTemplate>
+    <p class="texto-explicativo text-center mb-3">
+      Selecciona las opciones de tu camiseta actual.
+    </p>
+  </ng-template>
+  
+
+  <div class="row align-items-center">
+    <!-- Imagen a la izquierda (más grande) -->
+    <div class="col-md-6">
+      <div class="text-center">
+        <img [src]="imagenFalda" alt="Pantalones seleccionados"
+          class="falda-imagen img-fluid mb-2" />
+
+        <!-- Precio total integrado debajo -->
+         <div class="precio-total-box mt-2 d-inline-block" *ngIf="!firstLoad">
+          <span class="fw-bold">Precio Total: </span>
+          <span class="fs-5">{{ precioTotal | number:'1.2-2' }} €</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Opciones y formulario a la derecha -->
+    <div class="col-md-6">
+      <div class="opciones-container">
+        
+        <app-entallado-falda [(modelo)]="entallado" (modeloChange)="onCambioDeOpciones();updatePrecio('entallado',$event);"></app-entallado-falda>
+
+        <app-largo-falda [(modelo)]="largo" (modeloChange)="onCambioDeOpciones();updatePrecio('largo',$event); "></app-largo-falda>
+        
+      </div>
+
+      <!-- Campo de correo y botón de enviar -->
+      <div class="email-container"
+        *ngIf="firstLoad==false; else AcceptTemplate">
+        <label for="email">Correo Electrónico</label>
+        <input type="email" (change)="onEmailChange($event)"
+          placeholder="Ingresa tu correo" class="form-control" required />
+        <button (click)="onSendEmail()"
+          [disabled]="!userEmail || !imagenExiste || !userEmail.includes('@')"
+          class="btn btn-primary">
+          Enviar
+        </button>
+      </div>
+
+      <ng-template #AcceptTemplate>
+      <div >
+        <div class="email-container">
+          <button (click)="acceptDesign()"
+            class="btn btn-primary">
+            Aceptar diseño
+          </button>
+        </div>
+      </div>
+      </ng-template>
+
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showPopup" class="popup-overlay show">
+  <div class="popup-backdrop"></div>
+  <div class="popup-content">
+    <app-factura
+      [codigo]="codigoFalda"
+      [entallado]="entallado"
+      [largo]="largo"
+      [precio]="precioTotal">
+    </app-factura>
+    <button (click)="closePopup()" class="btn btn-secondary mt-3">Cerrar</button>
+  </div>
+</div>

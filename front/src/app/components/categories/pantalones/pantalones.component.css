@@ -7,15 +7,17 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.camiseta-imagen {
-    width: 75%;
-    /* Imagen más grande */
-    max-width: 450px;
-    /* Tamaño máximo */
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    margin-left: 25%;
+.pantalon-imagen {
+     width: 40%;
+  /* Imagen más grande */
+  max-width: 650px;
+  /* Tamaño máximo */
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  display: block;
+  margin: 0 auto 15px auto;
+  /* Centrado y margen inferior */
 }
 
 .opciones-container {
@@ -111,4 +113,93 @@ h1 {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     z-index: 10000;
     /* Encima del backdrop */
+}
+
+.precio-total-box {
+  background: #e6f4ea;
+  border: 1px solid #c3ddcc;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #1c1c1c;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-left: 80px;
+}
+
+.precio-total-box {
+  background: #e6f4ea;
+  border: 1px solid #c3ddcc;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #1c1c1c;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-left: 80px;
+  display: block;
+  margin: 0 auto;
+  /* Centrado debajo de la imagen */
+  text-align: center;
+}
+
+.texto-explicativo {
+  font-size: 1rem;
+  color: #555;
+  font-style: italic;
+}
+
+/* Ajustar contenedor principal en móviles */
+@media (max-width: 768px) {
+  .camiseta-container {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  /* La imagen no debe sobrepasar el ancho del contenedor */
+  .camiseta-imagen {
+    width: 100% !important; /* ignorar 120% y ajustar al 100% */
+    max-width: 100%; /* que no exceda */
+    margin-bottom: 15px;
+  }
+
+  /* Apilar columnas: imagen arriba y opciones abajo */
+  .row.align-items-center {
+    flex-direction: column;
+  }
+
+  /* Cada columna ocupa 100% y sin centrado extra */
+  .row.align-items-center > .col-md-6 {
+    max-width: 100%;
+    flex: 0 0 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  /* El box de precio centrado y con margen adecuado */
+  .precio-total-box {
+    margin-left: 0;
+    margin-top: 10px;
+    display: block;
+  }
+
+  /* Ajustar email container */
+  .email-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .email-container input,
+  .email-container button {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+  }
 }

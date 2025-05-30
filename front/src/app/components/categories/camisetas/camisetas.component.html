@@ -15,12 +15,30 @@
       Tops
     </button>
   </div>
+  <p class="texto-explicativo text-center mb-3"
+    *ngIf="firstLoad==false; else firstLoadTemplate">
+    Cada parte modificada tiene un coste adicional de {{precio}} €.
+  </p>
+
+  <ng-template #firstLoadTemplate>
+    <p class="texto-explicativo text-center mb-3">
+      Selecciona las opciones de tu camiseta actual.
+    </p>
+  </ng-template>
 
   <div class="row align-items-center">
     <!-- Imagen a la izquierda (más grande) -->
-    <div class="col-md-6 text-center">
-      <img [src]="imagenCamiseta" alt="Camiseta seleccionada"
-        class="camiseta-imagen img-fluid" />
+    <div class="col-md-6">
+      <div class="text-center">
+        <img [src]="imagenCamiseta" alt="Camiseta seleccionada"
+          class="camiseta-imagen img-fluid mb-2" />
+
+        <!-- Precio total integrado debajo -->
+        <div class="precio-total-box mt-2 d-inline-block" *ngIf="!firstLoad">
+          <span class="fw-bold">Precio Total: </span>
+          <span class="fs-5">{{ precioTotal | number:'1.2-2' }} €</span>
+        </div>
+      </div>
     </div>
 
     <!-- Opciones y formulario a la derecha -->
@@ -28,24 +46,25 @@
       <div class="opciones-container">
 
         <app-entallado [(modelo)]="entallado"
-          (modeloChange)="onCambioDeOpciones()"></app-entallado>
+          (modeloChange)="onCambioDeOpciones(); updatePrecio('entallado',$event);"></app-entallado>
 
         <app-manga [(modelo)]="manga"
-          (modeloChange)="onCambioDeOpciones()"></app-manga>
+          (modeloChange)="onCambioDeOpciones(); updatePrecio('manga',$event);"></app-manga>
 
         <app-cuello [(modelo)]="cuello"
-          (modeloChange)="onCambioDeOpciones()"></app-cuello>
+          (modeloChange)="onCambioDeOpciones(); updatePrecio('cuello',$event);"></app-cuello>
 
         <app-largo [(modelo)]="largo"
-          (modeloChange)="onCambioDeOpciones()"></app-largo>
+          (modeloChange)="onCambioDeOpciones(); updatePrecio('largo',$event);"></app-largo>
 
         <app-decoracion [(modelo)]="decoracion"
-          (modeloChange)="onCambioDeOpciones()"></app-decoracion>
+          (modeloChange)="onCambioDeOpciones(); updatePrecio('decoracion',$event);"></app-decoracion>
 
       </div>
 
       <!-- Campo de correo y botón de enviar -->
-      <div class="email-container">
+      <div class="email-container"
+        *ngIf="firstLoad==false; else AcceptTemplate">
         <label for="email">Correo Electrónico</label>
         <input type="email" (change)="onEmailChange($event)"
           placeholder="Ingresa tu correo" class="form-control" required />
@@ -55,6 +74,19 @@
           Enviar
         </button>
       </div>
+
+      <ng-template #AcceptTemplate>
+      <div >
+        <div class="email-container">
+          <button (click)="acceptDesign()"
+            class="btn btn-primary">
+            Aceptar diseño
+          </button>
+        </div>
+      </div>
+      </ng-template>
+      
+
     </div>
   </div>
 </div>
@@ -67,7 +99,8 @@
       [entallado]="entallado"
       [manga]="manga"
       [cuello]="cuello"
-      [largo]="largo">
+      [largo]="largo"
+      [precio]="precioTotal">
     </app-factura>
     <button (click)="closePopup()"
       class="btn btn-secondary mt-3">Cerrar</button>

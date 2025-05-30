@@ -7,7 +7,6 @@ import { OtrosComponent } from './otros/otros.component';
 import { PantalonesComponent } from './pantalones/pantalones.component';
 import { TopsComponent } from './tops/tops.component';
 import { VestidosComponent } from './vestidos/vestidos.component';
-import { ZapatillasComponent } from './zapatillas/zapatillas.component';
 import { ClothingOptionsModule } from './clothing-options/clothing-options.module';
 import { FacturaComponent } from './factura/factura.component';
 import { FormsModule } from '@angular/forms';
@@ -23,7 +22,6 @@ import { FormsModule } from '@angular/forms';
     PantalonesComponent,
     TopsComponent,
     VestidosComponent,
-    ZapatillasComponent,
     FacturaComponent
   ],
   imports: [
@@ -38,8 +36,7 @@ import { FormsModule } from '@angular/forms';
     OtrosComponent,
     PantalonesComponent,
     TopsComponent,
-    VestidosComponent,
-    ZapatillasComponent,
+    VestidosComponent
   ]
 })
 export class CategoriesModule { }

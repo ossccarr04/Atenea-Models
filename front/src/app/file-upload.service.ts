@@ -22,8 +22,10 @@ export class FileUploadService {
 
     this.chooseCategory(carac, formData);
     
+    //'http://localhost:3000/send-email'
+    //'api/sendEmail'
     try {
-      const response = await firstValueFrom(this.http.post('/api/sendEmail', formData));
+      const response = await firstValueFrom(this.http.post('api/sendEmail', formData));
       return response;
     } catch (error) {
       console.error('Error al enviar el correo', error);
@@ -50,6 +52,7 @@ export class FileUploadService {
         formData.append('manga', carac[2]);
         formData.append('cuello', carac[3]);
         formData.append('largo', carac[4]);
+        formData.append('precio', carac[5]);
         break;
       case "VES":
         formData.append('codigo', carac[0]);
@@ -57,14 +60,23 @@ export class FileUploadService {
         formData.append('manga', carac[2]);
         formData.append('cuello', carac[3]);
         formData.append('largo', carac[4]);
+        formData.append('precio', carac[5]);
         break;
       case "PAN":
         formData.append('codigo', carac[0]);
         formData.append('tipo', carac[1]);
         formData.append('largo', carac[2]);
+        formData.append('precio', carac[3]);
+        break;
+      case "FAL":
+        formData.append('codigo', carac[0]);
+        formData.append('entallado', carac[1]);
+        formData.append('largo', carac[2]);
+        formData.append('precio', carac[3]);
         break;
       case "OTR":
         formData.append('codigo', carac[0]);
+        formData.append('precio', carac[1]);
         break;
     }
   }

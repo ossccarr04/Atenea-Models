@@ -16,10 +16,28 @@ export class VestidosComponent {
   popupMessage: string = '';
   userEmail: string = '';
 
+  // Precio base de la camiseta
+  precio: number = 3.75;
+  contModificaciones: number = 0;
+  precioTotal: number = 0;
+  firstLoad: boolean = true;
+
   tipo: string = "Ajustado"
   largo: string = "Largo"
   cuello: string = "Pico"
   manga: string = "Larga"
+
+
+ 
+
+  modificacionesEstilo = {
+    tipo: false,
+    largo: false,
+    cuello: false,
+    manga: false,
+  };
+
+  originalEstilo!: { [K in keyof typeof this.modificacionesEstilo]: string };
 
   ngOnInit() {
     this.validarImagen().then((existe) => {
@@ -34,37 +52,62 @@ export class VestidosComponent {
     });
   }
 
+     acceptDesign() {
+    this.firstLoad = false;
+    this.originalEstilo = {
+      tipo: this.tipo,
+      largo: this.largo,
+      cuello: this.cuello,
+      manga: this.manga,
+    }
+  }
+
+  updatePrecio(prop: keyof typeof this.modificacionesEstilo, value: any) {
+    const originalValue = this.originalEstilo[prop];
+    const isModified = this.modificacionesEstilo[prop];
+
+    if (value !== originalValue && !isModified) {
+      this.contModificaciones++;
+      this.modificacionesEstilo[prop] = true;
+    }
+    if (value === originalValue && isModified) {
+      this.contModificaciones--;
+      this.modificacionesEstilo[prop] = false;
+    }
+    this.precioTotal = this.precio * this.contModificaciones
+  }
+
   // Getter que actualiza la imagen automáticamente
-  get imagenCamiseta(): string {
-    const tipoStr = this.tipo =="Ajustado" ?   `t${this.tipo.toLowerCase().substring(0, 2)}` : `tvu`;
+  get imagenVestido(): string {
+    const tipoStr = this.tipo == "Ajustado" ? `t${this.tipo.toLowerCase().substring(0, 2)}` : `tvu`;
     const largoStr = this.largo == "Largo" ? `-${this.largo.toLowerCase().substring(0, 2)}` : `-l${this.largo.toLowerCase().substring(0, 2)}`;
     const cuelloStr = this.cuello ? `-c${this.cuello.toLowerCase().charAt(0)}` : '';
-    const mangaStr = this.manga !="Sin mangas" ? `-m${this.manga.toLowerCase().charAt(0)}` : '';
+    const mangaStr = this.manga != "Sin mangas" ? `-m${this.manga.toLowerCase().charAt(0)}` : '';
+
+    /*
+        let decoracion = '';
+        switch (this.decoracion) {
+          case "Logo grande":
+            decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}g`;
+            break;
+          case "Logo en los laterales":
+            decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}l`;
+            break;
+          case "Eslogan":
+            decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}`;
+            break;
     
-/*
-    let decoracion = '';
-    switch (this.decoracion) {
-      case "Logo grande":
-        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}g`;
-        break;
-      case "Logo en los laterales":
-        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}l`;
-        break;
-      case "Eslogan":
-        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}`;
-        break;
-
-    }
-
-    Falta poner la decoracion en el return
-        */
+        }
+    
+        Falta poner la decoracion en el return
+            */
     return `assets/imgs/vestidos/ves-${tipoStr}${largoStr}${cuelloStr}${mangaStr}.jpg`;
   }
 
   async validarImagen(): Promise<boolean> {
     return new Promise((resolve) => {
       const img = new Image();
-      img.src = this.imagenCamiseta;
+      img.src = this.imagenVestido;
 
       img.onload = () => {
         console.log("Imagen encontrada:", img.src);
@@ -89,9 +132,9 @@ export class VestidosComponent {
 
 
     try {
-      const fileName = this.fileUploadService.getFileNameFromUrl(this.imagenCamiseta);
-      const file = await this.fileUploadService.urlToFile(this.imagenCamiseta, fileName, "image/jpg");
-      const carac = [this.codigoVestido, this.tipo, this.manga, this.cuello, this.largo];
+      const fileName = this.fileUploadService.getFileNameFromUrl(this.imagenVestido);
+      const file = await this.fileUploadService.urlToFile(this.imagenVestido, fileName, "image/jpg");
+      const carac = [this.codigoVestido, this.tipo, this.manga, this.cuello, this.largo, this.precioTotal.toString()];
       await this.fileUploadService.sendEmail(this.userEmail, file, carac);
       this.showPopupMessage(true, 'Correo enviado exitosamente');
     } catch (error) {

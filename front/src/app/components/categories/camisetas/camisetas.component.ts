@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class CamisetasComponent {
   // Selección aleatoria al inicio
-  constructor(private fileUploadService: FileUploadService, private route:Router) { }
+  constructor(private fileUploadService: FileUploadService, private route: Router) { }
 
   showPopup: boolean = false;
   imagenExiste: boolean = true;
@@ -17,18 +17,36 @@ export class CamisetasComponent {
   userEmail: string = '';
   tipoPrenda: string = "camisetas";
 
+  // Precio base de la camiseta
+  precio: number = 3.75;
+  contModificaciones: number = 0;
+  precioTotal:number = 0;
+  firstLoad: boolean = true;
+
   entallado: string = "Entallado"
   manga: string = "Larga"
   cuello: string = "Pico"
   largo: string = "Cadera"
   decoracion: string = "Sin decoracion"
+  
+
+  modificacionesEstilo = {
+  entallado: false,
+  manga: false,
+  cuello: false,
+  largo: false,
+  decoracion: false
+};
+
+originalEstilo!: { [K in keyof typeof this.modificacionesEstilo]: string };
+
 
   ngOnInit() {
     this.validarImagenCamiseta().then((existe) => {
       this.imagenExiste = existe;
     });
   }
-  
+
   // O cada vez que cambien las opciones:
   onCambioDeOpciones() {
     this.validarImagenCamiseta().then((existe) => {
@@ -37,10 +55,40 @@ export class CamisetasComponent {
   }
 
   onTipoPrendaChange(tipo: string) {
-    if(tipo == "tops"){
+    if (tipo == "tops") {
       this.route.navigate(['/tops']);
     }
 
+  }
+
+  updatePrecio(prop: keyof typeof this.modificacionesEstilo,value: any) {
+    if (!this.originalEstilo) return;
+    
+    console.log(this.originalEstilo)
+    console.log(this.modificacionesEstilo)
+    const originalValue = this.originalEstilo[prop];
+    const isModified = this.modificacionesEstilo[prop];
+
+    if(value !== originalValue && !isModified){
+      this.contModificaciones++;
+      this.modificacionesEstilo[prop] = true;
+    }
+    if(value === originalValue && isModified){
+      this.contModificaciones--;
+      this.modificacionesEstilo[prop] = false;
+    }
+    this.precioTotal = this.precio * this.contModificaciones
+  }
+
+  acceptDesign(){
+    this.firstLoad = false;
+    this.originalEstilo = {
+      entallado: this.entallado,
+      manga: this.manga,
+      cuello: this.cuello,
+      largo: this.largo,
+      decoracion: this.decoracion
+    }
   }
 
   // Getter que actualiza la imagen automáticamente
@@ -48,34 +96,34 @@ export class CamisetasComponent {
     const entalladoStr = this.entallado == "Entallado" ? `${this.entallado.toLowerCase().substring(0, 2)}-` : '';
     const mangaStr = this.manga ? `m${this.manga.toLowerCase().charAt(0)}` : '';
     const cuelloStr = this.cuello ? `-c${this.cuello.toLowerCase().charAt(0)}` : '';
-    const largoStr = this.largo!="Normal" ? `-l${this.largo.toLowerCase().substring(0, 2)}` : '';
+    const largoStr = this.largo != "Normal" ? `-l${this.largo.toLowerCase().substring(0, 2)}` : '';
 
     let decoracion = '';
     switch (this.decoracion) {
-        case "Logo grande":
-            decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}g`;
-            break;
-        case "Logo en los laterales":
-            decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}l`;
-            break;
-        case "Eslogan":
-            decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}`;
-            break;
+      case "Logo grande":
+        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}g`;
+        break;
+      case "Logo en los laterales":
+        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}l`;
+        break;
+      case "Eslogan":
+        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}`;
+        break;
 
     }
-    return `assets/imgs/camiseta/cam-${entalladoStr}${mangaStr}${cuelloStr}${largoStr}${decoracion}.png`;
+    return `assets/imgs/camisetas/cam-${entalladoStr}${mangaStr}${cuelloStr}${largoStr}${decoracion}.png`;
   }
 
   async validarImagenCamiseta(): Promise<boolean> {
     return new Promise((resolve) => {
       const img = new Image();
       img.src = this.imagenCamiseta;
-  
+
       img.onload = () => {
         console.log("Imagen encontrada:", img.src);
         resolve(true);
       };
-      
+
       img.onerror = () => {
         console.error("Imagen no encontrada:", img.src);
         resolve(false);
@@ -96,8 +144,8 @@ export class CamisetasComponent {
     try {
       const fileName = this.fileUploadService.getFileNameFromUrl(this.imagenCamiseta);
       const file = await this.fileUploadService.urlToFile(this.imagenCamiseta, fileName, "image/png");
-      const carac= [this.codigoCamiseta,this.entallado,this.manga,this.cuello,this.largo];
-      await this.fileUploadService.sendEmail(this.userEmail,file,carac);
+      const carac = [this.codigoCamiseta, this.entallado, this.manga, this.cuello, this.largo, this.precioTotal.toString()];
+      await this.fileUploadService.sendEmail(this.userEmail, file, carac);
       this.showPopupMessage(true, 'Correo enviado exitosamente');
     } catch (error) {
       console.error(error);
@@ -123,13 +171,13 @@ export class CamisetasComponent {
 
   get codigoCamiseta(): string {
     const entalladoStr = this.entallado === "Entallado" ? "ENT" : "";
-    const mangaStr = this.manga.substring(0,2).toUpperCase();
-    const cuelloStr = this.cuello.substring(0,2).toUpperCase();
-    const largoStr = this.largo.substring(0,2).toUpperCase();
+    const mangaStr = this.manga.substring(0, 2).toUpperCase();
+    const cuelloStr = this.cuello.substring(0, 2).toUpperCase();
+    const largoStr = this.largo.substring(0, 2).toUpperCase();
 
     const now = new Date();
     const formattedDate = `${now.getFullYear()}_${(now.getMonth() + 1).toString().padStart(2, '0')}_${now.getDate().toString().padStart(2, '0')}_${now.getHours().toString().padStart(2, '0')}_${now.getMinutes().toString().padStart(2, '0')}`;
-  
+
     return `CAM-${entalladoStr}${mangaStr}${cuelloStr}${largoStr}-${formattedDate}`; // Agregamos timestamp para evitar duplicados
   }
 }

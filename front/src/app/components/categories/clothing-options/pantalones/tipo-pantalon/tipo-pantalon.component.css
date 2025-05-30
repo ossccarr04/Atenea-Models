@@ -23,3 +23,29 @@ div {
     display: flex;
     flex-direction: column;
 }
+@media (max-width: 767.98px) {
+  div {
+    padding-left: 0 !important;
+  }
+
+  .mb-3 {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .mb-3 label {
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  select {
+     display: block;                /* Asegura que el margin funcione */
+  margin: 0 auto !important;     /* Centrado horizontal */
+  width: 80% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  }
+}

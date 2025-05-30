@@ -1,9 +1,21 @@
 .carousel-item {
-    height: 95vh;
-    min-height: 350px;
-    background: no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  height: 95vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  background-size: cover;
+}
+
+/* Media query para pantallas pequeñas (móviles) */
+@media (max-width: 576px) {
+  .carousel-item {
+    height: 50vh; /* Reducir altura para móviles */
+    min-height: 200px;
   }
+
+  /* Opcional: Ajustar tamaño de imágenes dentro del carousel */
+  .carousel-item img {
+    object-fit: cover; /* Para que la imagen llene el contenedor sin deformarse */
+    height: 100%;
+    width: 100%;
+  }
+}

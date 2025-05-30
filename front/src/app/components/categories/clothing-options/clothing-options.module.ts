@@ -11,6 +11,9 @@ import { MangaVestidoComponent } from './vestidos/manga-vestido/manga-vestido.co
 import { TipoComponent } from './vestidos/tipo/tipo.component';
 import { TipoPantalonComponent } from './pantalones/tipo-pantalon/tipo-pantalon.component';
 import { LargoPantalonComponent } from './pantalones/largo-pantalon/largo-pantalon.component';
+import { LargoFaldaComponent} from './faldas/largo-falda/largo-falda.component';
+import { EntalladoFaldaComponent } from './faldas/entallado-falda/entallado-falda.component';
+
 
 
 
@@ -26,13 +29,15 @@ import { LargoPantalonComponent } from './pantalones/largo-pantalon/largo-pantal
     MangaVestidoComponent,
     TipoComponent,
     TipoPantalonComponent,
-    LargoPantalonComponent
+    LargoPantalonComponent,
+    EntalladoFaldaComponent,
+    LargoFaldaComponent
   ],
   imports: [
     CommonModule,
-    
+
   ],
-  exports:[
+  exports: [
     EntalladoComponent,
     MangaComponent,
     CuelloComponent,
@@ -43,7 +48,9 @@ import { LargoPantalonComponent } from './pantalones/largo-pantalon/largo-pantal
     MangaVestidoComponent,
     TipoComponent,
     TipoPantalonComponent,
-    LargoPantalonComponent
+    LargoPantalonComponent,
+    EntalladoFaldaComponent,
+    LargoFaldaComponent
   ]
 })
 export class ClothingOptionsModule { }

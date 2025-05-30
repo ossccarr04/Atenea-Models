@@ -36,27 +36,43 @@ app.post('/send-email', upload.single('file'), (req, res) => {
     return res.status(400).json({ message: 'Faltan datos requeridos: archivo, email o código' });
   }
   
-  let carac1='', carac2='', carac3='', carac4='';
+  let carac1='', carac2='', carac3='', carac4='', carac5='', modelo='';
 
   switch(codigo.substring(0, 3)){ // Dependiendo de la prenda, se envían diferentes características
     case "CAM":
+      modelo = "camiseta";
       carac1= "Entallado: "+req.body.entallado;
       carac2= "Manga: "+req.body.manga;
       carac3= "Cuello: "+req.body.cuello;
       carac4= "Largo: "+req.body.largo;  
+      carac5= "Precio: "+req.body.precio + "€";
       break;
 
     case "VES":
+      modelo = "vestido";
       carac1= "Tipo: "+req.body.tipo;
       carac2= "Manga: "+req.body.manga;
       carac3= "Cuello: "+req.body.cuello;
       carac4= "Largo: "+req.body.largo;  
+      carac5= "Precio: "+req.body.precio + "€";
       break;
     
     case "PAN":
+      modelo = "pantalon";
       carac1= "Tipo: "+req.body.tipo;
       carac2= "Largo: "+req.body.largo;  
+      carac3= "Precio: "+req.body.precio + "€";
+
+    case "FAL":
+      modelo = "falda";
+      carac1= "Entallado: "+req.body.entallado;
+      carac2= "Largo: "+req.body.largo;
+      carac3= "Precio: "+req.body.precio + "€";
       break;
+
+    case "OTR":
+      modelo = "diseño personalizado";
+      carac1= "Precio: "+req.body.precio + "€";
   }
 
   // Configurar el transporte con nodemailer usando las variables de entorno
@@ -76,13 +92,14 @@ app.post('/send-email', upload.single('file'), (req, res) => {
     from: process.env.EMAIL_USER, // El correo configurado en el .env para enviar el correo
     to: process.env.EMAIL_USER,   // El correo configurado en el .env para recibir el correo
     subject: 'Diseño subido. Codigo de compra: ' + codigo, // Asunto del correo
-    text: `Aquí tienes los detalles de tu camiseta:\n\n
+    text: `Aquí tienes los detalles de tu ${modelo}:\n\n
           ${"Codigo: "+codigo}
           ${carac1 ? carac1:''}
           ${carac2 ? carac2:''}
           ${carac3 ? carac3:''}
-          ${carac4 ? carac4:''}\n
-      Adjunto encontrarás la imagen del diseño.`,// Mensaje del correo
+          ${carac4 ? carac4:''}
+          ${carac5 ? carac5:''}\n
+      Encontrarás adjunta la imagen del diseño.`,// Mensaje del correo
     attachments: [
       {
         filename: file.originalname, // Nombre del archivo adjunto

@@ -15,6 +15,8 @@ export class OtrosComponent {
   imagePreview: string | ArrayBuffer | null = null;
   showPopup: boolean = false;
   popupMessage: string = '';
+
+  precioTotal:number = 10;
   
   constructor(private fileUploadService: FileUploadService) {}
 
@@ -39,7 +41,7 @@ export class OtrosComponent {
     if (!this.selectedFile || !this.userEmail) return;
 
     try {
-      const carac=[this.codigoCamiseta]
+      const carac=[this.codigoCamiseta,this.precioTotal.toString()]
       // Enviamos tanto el archivo como el correo al servidor
       await this.fileUploadService.sendEmail(this.userEmail,this.selectedFile,carac);
       this.showPopupMessage(true, 'Correo enviado exitosamente');
@@ -51,8 +53,12 @@ export class OtrosComponent {
 
   // Mostrar el popup con el mensaje correspondiente
   showPopupMessage(success: boolean, message: string) {
-    this.showPopup = true;
-    this.popupMessage = success ? message : 'Hubo un problema al enviar el correo. Intenta de nuevo.';
+    if (success) {
+      this.showPopup = true;
+      document.body.style.overflow = 'hidden'; // Bloquea scroll
+    } else {
+      alert('Hubo un problema al enviar el correo. Intenta de nuevo.');
+    }
   }
 
   // Cerrar el popup y redirigir al home
