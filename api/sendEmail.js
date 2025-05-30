@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: 'Faltan datos requeridos: archivo, email o código' });
     }
 
-    let carac1 = '', carac2 = '', carac3 = '', carac4 = '', modelo = '';
+    let carac1 = '', carac2 = '', carac3 = '', carac4 = '', carac5='', modelo = '';
 
     switch (codigo.substring(0, 3)) {
       case "CAM":
@@ -43,6 +43,7 @@ export default async function handler(req, res) {
         carac2 = "Manga: " + (fields.manga ? fields.manga[0] : '');
         carac3 = "Cuello: " + (fields.cuello ? fields.cuello[0] : '');
         carac4 = "Largo: " + (fields.largo ? fields.largo[0] : '');
+        carac5 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
 
       case "VES":
@@ -51,22 +52,26 @@ export default async function handler(req, res) {
         carac2 = "Manga: " + (fields.manga ? fields.manga[0] : '');
         carac3 = "Cuello: " + (fields.cuello ? fields.cuello[0] : '');
         carac4 = "Largo: " + (fields.largo ? fields.largo[0] : '');
+        carac5 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
 
       case "PAN":
         modelo = "pantalon";
         carac1 = "Tipo: " + (fields.tipo ? fields.tipo[0] : '');
         carac2 = "Largo: " + (fields.largo ? fields.largo[0] : '');
+        carac3 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
 
       case "FAL":
         modelo = "falda";
         carac1 = "Entallado: " + (fields.entallado ? fields.entallado[0] : '');
         carac2 = "Largo: " + (fields.largo ? fields.largo[0] : '');
+        carac3 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
 
       case "OTR":
         modelo = "diseño personalizado";
+        carac1 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
     }
     const transporter = nodemailer.createTransport({
@@ -90,6 +95,7 @@ ${carac1}
 ${carac2}
 ${carac3}
 ${carac4}
+${carac5}
 
 Encontrarás adjunta la imagen del diseño.`,
       attachments: [
