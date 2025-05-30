@@ -34,27 +34,41 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: 'Faltan datos requeridos: archivo, email o código' });
     }
 
-    let carac1 = '', carac2 = '', carac3 = '', carac4 = '';
+    let carac1 = '', carac2 = '', carac3 = '', carac4 = '', modelo = '';
 
     switch (codigo.substring(0, 3)) {
       case "CAM":
+        modelo = "camiseta";
         carac1 = "Entallado: " + (fields.entallado ? fields.entallado[0] : '');
         carac2 = "Manga: " + (fields.manga ? fields.manga[0] : '');
         carac3 = "Cuello: " + (fields.cuello ? fields.cuello[0] : '');
         carac4 = "Largo: " + (fields.largo ? fields.largo[0] : '');
         break;
+
       case "VES":
+        modelo = "vestido";
         carac1 = "Tipo: " + (fields.tipo ? fields.tipo[0] : '');
         carac2 = "Manga: " + (fields.manga ? fields.manga[0] : '');
         carac3 = "Cuello: " + (fields.cuello ? fields.cuello[0] : '');
         carac4 = "Largo: " + (fields.largo ? fields.largo[0] : '');
         break;
+
       case "PAN":
+        modelo = "pantalon";
         carac1 = "Tipo: " + (fields.tipo ? fields.tipo[0] : '');
         carac2 = "Largo: " + (fields.largo ? fields.largo[0] : '');
         break;
-    }
 
+      case "FAL":
+        modelo = "falda";
+        carac1 = "Entallado: " + (fields.entallado ? fields.entallado[0] : '');
+        carac2 = "Largo: " + (fields.largo ? fields.largo[0] : '');
+        break;
+
+      case "OTR":
+        modelo = "diseño personalizado";
+        break;
+    }
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -70,14 +84,14 @@ export default async function handler(req, res) {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       subject: 'Diseño subido. Código de compra: ' + codigo,
-      text: `Aquí tienes los detalles de tu diseño:\n\n
+      text: `Aquí tienes los detalles de tu ${modelo}:\n\n
 Código: ${codigo}
 ${carac1}
 ${carac2}
 ${carac3}
 ${carac4}
 
-Adjunto encontrarás la imagen del diseño.`,
+Encontrarás adjunta la imagen del diseño.`,
       attachments: [
         {
           filename: file.originalFilename,
