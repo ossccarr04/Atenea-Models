@@ -4,6 +4,7 @@ import { ProductComponent } from './product/product.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CategoriesModule } from './categories/categories.module';
+import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 
 
 
@@ -11,7 +12,8 @@ import { CategoriesModule } from './categories/categories.module';
   declarations: [
     ProductComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SobreNosotrosComponent
   ],
   imports: [
     CommonModule
@@ -20,6 +22,7 @@ import { CategoriesModule } from './categories/categories.module';
     HeaderComponent,
     FooterComponent,
     ProductComponent,
+    SobreNosotrosComponent,
     CategoriesModule
   ]
 })

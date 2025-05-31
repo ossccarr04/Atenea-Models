@@ -41,6 +41,23 @@ nav ul li a {
     margin-right: auto;
     line-height: 1.5;
 }
+
+.descripcion + p {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #333;
+  max-width: 700px;
+  margin: 20px auto 40px auto;
+  line-height: 1.6;
+}
+
+.descripcion + p span {
+  font-weight: bold;
+  color: #f20606; /* un rojo para destacar "Ayuda" */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .categorias {
     display: flex;
     flex-wrap: wrap;

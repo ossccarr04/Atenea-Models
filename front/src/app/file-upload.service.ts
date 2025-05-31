@@ -25,7 +25,7 @@ export class FileUploadService {
     //'http://localhost:3000/send-email'
     //'api/sendEmail'
     try {
-      const response = await firstValueFrom(this.http.post('api/sendEmail', formData));
+      const response = await firstValueFrom(this.http.post('http://localhost:3000/send-email', formData));
       return response;
     } catch (error) {
       console.error('Error al enviar el correo', error);
@@ -71,6 +71,12 @@ export class FileUploadService {
       case "FAL":
         formData.append('codigo', carac[0]);
         formData.append('entallado', carac[1]);
+        formData.append('largo', carac[2]);
+        formData.append('precio', carac[3]);
+        break;
+      case "CHA":
+        formData.append('codigo', carac[0]);
+        formData.append('tipo', carac[1]);
         formData.append('largo', carac[2]);
         formData.append('precio', carac[3]);
         break;

@@ -1,22 +1,28 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 declare var bootstrap: any;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent {
 
-  constructor() { }
+  constructor(private route: Router) 
+  { }
 
-  ngAfterViewInit() {
-    const carouselElement = document.querySelector('#carouselExampleCaptions');
-    if (carouselElement) {
-      new bootstrap.Carousel(carouselElement, {
-        interval: 3000, // 3 segundos para cambiar slide
-        ride: 'carousel'
-      });
-    }
+  navigateToInicio(){
+    this.route.navigate(['/inicio']);
   }
 
+  navigateToSobreNosotros() {
+    this.route.navigate(['/sobre-nosotros']);
+  }
+
+  navigateToAyuda() {
+  const url = this.route.serializeUrl(
+    this.route.createUrlTree(['/ayuda'])
+  );
+  window.open(url, '_blank');
+}
 }

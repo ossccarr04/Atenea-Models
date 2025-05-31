@@ -70,6 +70,13 @@ app.post('/send-email', upload.single('file'), (req, res) => {
       carac3= "Precio: "+req.body.precio + "€";
       break;
 
+    case "CHA":
+      modelo = "chaqueta";
+      carac1= "Tipo: "+req.body.tipo;
+      carac2= "Largo: "+req.body.largo;  
+      carac3= "Precio: "+req.body.precio + "€";
+      break;
+
     case "OTR":
       modelo = "diseño personalizado";
       carac1= "Precio: "+req.body.precio + "€";

@@ -10,7 +10,7 @@ export class DecoracionComponent {
   @Input() modelo: string = '';
   @Output() modeloChange = new EventEmitter<string>();
 
-  opciones = ['Sin decoracion', 'Logo grande', "Logo en los laterales", "Eslogan"];
+  opciones = ['Sin decoracion','Logo frontal', 'Logo espalda'];
 
   actualizarSeleccion(event: Event) {
     this.modelo = (event.target as HTMLSelectElement).value;

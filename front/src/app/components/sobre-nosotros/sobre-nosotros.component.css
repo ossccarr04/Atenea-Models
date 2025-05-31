@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.descripcion {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  background-color: #f9f9f9; /* fondo muy claro para contraste suave */
+  color: #333; /* texto gris oscuro más suave que negro puro */
+  font-family: 'Georgia', serif;
+  font-size: 18px;
+  line-height: 1.7;
+  border-radius: 8px; /* bordes redondeados para suavizar */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* sombra ligera para dar profundidad */
+}
+
+.descripcion h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #2c3e50; /* un azul oscuro para destacar el título */
+  font-weight: 700;
+}
+
+.descripcion p {
+  margin-bottom: 20px; /* espacio entre párrafos */
+}
+
+
+.categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+.categoria {
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid #000;
+    background-color: #fff;
+    transition: transform 0.3s ease-in-out;
+}
+
+.categoria:hover {
+    transform: scale(1.05);
+}

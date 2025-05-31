@@ -1,20 +1,6 @@
 <div class="camiseta-container container mt-4">
   <h1 class="fw-bold text-center">Camisetas</h1>
 
-  <div class="tipo-prenda-toggle text-center my-3">
-    <button
-      class="btn-toggle"
-      [ngClass]="{'active': tipoPrenda === 'camisetas'}"
-      (click)="onTipoPrendaChange('camisetas')">
-      Camisetas
-    </button>
-    <button
-      class="btn-toggle"
-      [ngClass]="{'active': tipoPrenda === 'tops'}"
-      (click)="onTipoPrendaChange('tops')">
-      Tops
-    </button>
-  </div>
   <p class="texto-explicativo text-center mb-3"
     *ngIf="firstLoad==false; else firstLoadTemplate">
     Cada parte modificada tiene un coste adicional de {{precio}} €.

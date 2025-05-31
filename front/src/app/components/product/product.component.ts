@@ -32,4 +32,7 @@ export class ProductComponent {
     this.route.navigate(['/faldas']);
   }
 
+  navigateToChaquetas(){
+    this.route.navigate(['/chaquetas']);
+  }
 }

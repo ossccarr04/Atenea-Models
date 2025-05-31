@@ -26,7 +26,7 @@ export class CamisetasComponent {
   entallado: string = "Entallado"
   manga: string = "Larga"
   cuello: string = "Pico"
-  largo: string = "Cadera"
+  largo: string = "Normal"
   decoracion: string = "Sin decoracion"
   
 
@@ -100,11 +100,11 @@ originalEstilo!: { [K in keyof typeof this.modificacionesEstilo]: string };
 
     let decoracion = '';
     switch (this.decoracion) {
-      case "Logo grande":
-        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}g`;
+      case "Logo frontal":
+        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}f`;
         break;
-      case "Logo en los laterales":
-        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}l`;
+      case "Logo trasero":
+        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}t`;
         break;
       case "Eslogan":
         decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}`;

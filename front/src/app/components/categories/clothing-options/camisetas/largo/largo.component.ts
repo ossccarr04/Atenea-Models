@@ -10,7 +10,7 @@ export class LargoComponent{
     @Input() modelo: string = ''; 
     @Output() modeloChange = new EventEmitter<string>();
   
-    opciones = ['Cadera', 'Cintura', 'Normal'];
+    opciones = ['Normal','Cadera', 'Cintura' ];
   
     actualizarSeleccion(event: Event) {
       this.modelo = (event.target as HTMLSelectElement).value;

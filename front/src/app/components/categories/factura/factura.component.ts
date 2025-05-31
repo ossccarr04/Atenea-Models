@@ -11,10 +11,12 @@ export class FacturaComponent{
 
   @Input() codigo!: string;
   @Input() entallado!: string;
+  @Input() tipo!: string;
   @Input() manga!: string;
   @Input() cuello!: string;
   @Input() largo!: string;
   @Input() precio!: number;
+
 
 
   descargarFactura() {
