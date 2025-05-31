@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: 'Faltan datos requeridos: archivo, email o código' });
     }
 
-    let carac1 = '', carac2 = '', carac3 = '', carac4 = '', carac5='', modelo = '';
+    let carac1 = '', carac2 = '', carac3 = '', carac4 = '', carac5 = '', modelo = '';
 
     switch (codigo.substring(0, 3)) {
       case "CAM":
@@ -65,6 +65,13 @@ export default async function handler(req, res) {
       case "FAL":
         modelo = "falda";
         carac1 = "Entallado: " + (fields.entallado ? fields.entallado[0] : '');
+        carac2 = "Largo: " + (fields.largo ? fields.largo[0] : '');
+        carac3 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
+        break;
+
+      case "CHA":
+        modelo = "chaqueta";
+        carac1 = "Tipo: " + (fields.tipo ? fields.tipo[0] : '');
         carac2 = "Largo: " + (fields.largo ? fields.largo[0] : '');
         carac3 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
