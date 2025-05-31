@@ -42,20 +42,21 @@ nav ul li a {
     line-height: 1.5;
 }
 
-.descripcion + p {
-  font-family: Arial, sans-serif;
-  font-size: 18px;
-  color: #333;
-  max-width: 700px;
-  margin: 20px auto 40px auto;
-  line-height: 1.6;
+.descripcion+p {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #333;
+    max-width: 700px;
+    margin: 20px auto 40px auto;
+    line-height: 1.6;
 }
 
-.descripcion + p span {
-  font-weight: bold;
-  color: #f20606; /* un rojo para destacar "Ayuda" */
-  cursor: pointer;
-  text-decoration: underline;
+.descripcion+p span {
+    font-weight: bold;
+    color: #f20606;
+    /* un rojo para destacar "Ayuda" */
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .categorias {
@@ -64,6 +65,7 @@ nav ul li a {
     justify-content: center;
     margin: 50px 0;
 }
+
 .categoria {
     width: 300px;
     margin: 20px;
@@ -72,9 +74,11 @@ nav ul li a {
     background-color: #fff;
     transition: transform 0.3s ease-in-out;
 }
+
 .categoria:hover {
     transform: scale(1.05);
 }
+
 footer {
     background-color: #000;
     color: #fff;
@@ -82,4 +86,18 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+.ayuda-enlace {
+    cursor: pointer;
+    color: #007bff;
+    /* azul tipo enlace */
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.ayuda-enlace:hover {
+    color: #0056b3;
+    /* azul más oscuro al pasar el ratón */
 }

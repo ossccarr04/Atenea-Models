@@ -10,6 +10,7 @@ import { PantalonesComponent } from './components/categories/pantalones/pantalon
 import { FaldasComponent } from './components/categories/faldas/faldas.component';
 import { ChaquetasComponent } from './components/categories/chaquetas/chaquetas.component';
 import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotros.component';
+import { AyudaComponent } from './components/ayuda/ayuda.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'otros', component: OtrosComponent },
   { path: 'inicio', component: ProductComponent },
   { path: 'sobre-nosotros', component: SobreNosotrosComponent},
+  { path: 'ayuda', component:  AyudaComponent},
   { path: 'camisetas', component: CamisetasComponent },
   { path: 'vestidos', component: VestidosComponent },
   { path: 'pantalones', component: PantalonesComponent },

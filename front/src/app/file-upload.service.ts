@@ -25,7 +25,7 @@ export class FileUploadService {
     //'http://localhost:3000/send-email'
     //'api/sendEmail'
     try {
-      const response = await firstValueFrom(this.http.post('http://localhost:3000/send-email', formData));
+      const response = await firstValueFrom(this.http.post('api/sendEmail', formData));
       return response;
     } catch (error) {
       console.error('Error al enviar el correo', error);

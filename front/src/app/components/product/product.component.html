@@ -1,7 +1,7 @@
 <div>
     <body>
         <p class="descripcion">Bienvenido a Atenea, donde puedes personalizar cada prenda según tu estilo. Selecciona una categoría y explora las opciones de personalización para crear un look único y exclusivo.</p>
-        <p>Antes de continuar se recomienda ir al apartado de <span>Ayuda</span> para saber como fuciona el proceso de transformación de la prenda</p>
+        <p>Antes de continuar se recomienda ir al apartado de <span class="ayuda-enlace" (click)="goToAyuda()" style="cursor:pointer; color:#e80d0d; text-decoration:underline;">Ayuda</span> para saber como fuciona el proceso de transformación de la prenda.</p>
             <section class="categorias">
                 <div id="camisetas" class="categoria" (click)="navigateToCamisetas()" tabindex="0">
                     <h2>Camisetas</h2>

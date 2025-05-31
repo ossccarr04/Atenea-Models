@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CategoriesModule } from './categories/categories.module';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
+import { AyudaComponent } from './ayuda/ayuda.component';
 
 
 
@@ -13,7 +14,8 @@ import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.componen
     ProductComponent,
     HeaderComponent,
     FooterComponent,
-    SobreNosotrosComponent
+    SobreNosotrosComponent,
+    AyudaComponent
   ],
   imports: [
     CommonModule
@@ -23,6 +25,7 @@ import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.componen
     FooterComponent,
     ProductComponent,
     SobreNosotrosComponent,
+    AyudaComponent,
     CategoriesModule
   ]
 })

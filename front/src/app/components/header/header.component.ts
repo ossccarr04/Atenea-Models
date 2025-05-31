@@ -8,10 +8,9 @@ declare var bootstrap: any;
 })
 export class HeaderComponent {
 
-  constructor(private route: Router) 
-  { }
+  constructor(private route: Router) { }
 
-  navigateToInicio(){
+  navigateToInicio() {
     this.route.navigate(['/inicio']);
   }
 
@@ -20,9 +19,9 @@ export class HeaderComponent {
   }
 
   navigateToAyuda() {
-  const url = this.route.serializeUrl(
-    this.route.createUrlTree(['/ayuda'])
-  );
-  window.open(url, '_blank');
-}
+
+    const baseUrl = window.location.origin;
+    window.open(`${baseUrl}/ayuda`, '_blank');
+    
+  }
 }

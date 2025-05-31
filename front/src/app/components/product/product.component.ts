@@ -11,8 +11,14 @@ export class ProductComponent {
 
   constructor(private route: Router) { }
 
-  navigateToOtros() {
 
+  goToAyuda() {
+    const baseUrl = window.location.origin;
+    window.open(`${baseUrl}/ayuda`, '_blank');
+  }
+
+
+  navigateToOtros() {
     this.route.navigate(['/otros']);
   }
 
@@ -20,19 +26,19 @@ export class ProductComponent {
     this.route.navigate(['/camisetas']);
   }
 
-  navigateToVestidos(){
+  navigateToVestidos() {
     this.route.navigate(['/vestidos']);
   }
 
-  navigateToPantalones(){
+  navigateToPantalones() {
     this.route.navigate(['/pantalones']);
   }
 
-  navigateToFaldas(){
+  navigateToFaldas() {
     this.route.navigate(['/faldas']);
   }
 
-  navigateToChaquetas(){
+  navigateToChaquetas() {
     this.route.navigate(['/chaquetas']);
   }
 }
