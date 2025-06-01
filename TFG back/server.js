@@ -92,12 +92,12 @@ app.post('/send-email', upload.single('file'), (req, res) => {
       modelo = "chaqueta";
       carac1 = "Tipo: " + req.body.tipo;
       carac2 = "Largo: " + req.body.largo;
-      //carac3 = "Decroración: " + req.body.decoracion;
-      carac3 = "Sexo: " + req.body.sexo;
-      carac4 = "Contorno (cm): " + req.body.contorno_medidas;
-      carac5 = "Largo (cm): " + req.body.largo_medidas;
-      carac6 = "Sugerencia: " + req.body.sugerencias;
-      carac7 = "Precio: " + req.body.precio + "€";
+      carac3 = "Decroración: " + req.body.decoracion;
+      carac4 = "Sexo: " + req.body.sexo;
+      carac5 = "Contorno (cm): " + req.body.contorno_medidas;
+      carac6 = "Largo (cm): " + req.body.largo_medidas;
+      carac7 = "Sugerencia: " + req.body.sugerencias;
+      carac8 = "Precio: " + req.body.precio + "€";
       break;
 
     case "OTR":

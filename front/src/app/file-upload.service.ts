@@ -95,12 +95,12 @@ export class FileUploadService {
         formData.append('codigo', carac[0]);
         formData.append('tipo', carac[1]);
         formData.append('largo', carac[2]);
-        //formData.append('decoracion', carac[4]);
-        formData.append('sexo', carac[3]);
-        formData.append('contorno_medidas', carac[4]);
-        formData.append('largo_medidas', carac[5]);
-        formData.append('sugerencias', carac[6]);
-        formData.append('precio', carac[7]);
+        formData.append('decoracion', carac[3]);
+        formData.append('sexo', carac[4]);
+        formData.append('contorno_medidas', carac[5]);
+        formData.append('largo_medidas', carac[6]);
+        formData.append('sugerencias', carac[7]);
+        formData.append('precio', carac[8]);
         break;
       case "OTR":
         formData.append('codigo', carac[0]);

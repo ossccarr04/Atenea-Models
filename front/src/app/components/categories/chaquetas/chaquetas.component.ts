@@ -25,6 +25,7 @@ export class ChaquetasComponent {
 
   tipo: string = "Normal" 
   largo: string = "Larga"
+  decoracion:string = "Sin decoracion";
 
   sexo: string = "Hombre";
   contorno_medidas: string = "XS";
@@ -34,6 +35,7 @@ export class ChaquetasComponent {
   modificacionesEstilo = {
     tipo: false,
     largo: false,
+    decoracion: false
   };
 
   originalEstilo!: { [K in keyof typeof this.modificacionesEstilo]: string };
@@ -62,8 +64,6 @@ export class ChaquetasComponent {
   updatePrecio(prop: keyof typeof this.modificacionesEstilo, value: any) {
     if (!this.originalEstilo) return;
 
-    console.log(this.originalEstilo)
-    console.log(this.modificacionesEstilo)
     const originalValue = this.originalEstilo[prop];
     const isModified = this.modificacionesEstilo[prop];
 
@@ -83,6 +83,7 @@ export class ChaquetasComponent {
     this.originalEstilo = {
       tipo: this.tipo,
       largo: this.largo,
+      decoracion: this.decoracion
     }
   }
 
@@ -91,8 +92,13 @@ export class ChaquetasComponent {
     const tipoStr = `t${this.tipo.toLowerCase().substring(0, 2)}-`;
     const largoStr = this.largo != "Larga" ? `l${this.largo.toLowerCase().substring(0, 2)}` : this.largo.toLowerCase().substring(0, 2);
 
-
-    return `assets/imgs/chaquetas/cha-${tipoStr}${largoStr}.jpg`;
+    let decoracion = '';
+    switch (this.decoracion) {
+      case "Logo frontal":
+        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}f`;
+        break;
+    }
+    return `assets/imgs/chaquetas/cha-${tipoStr}${largoStr}${decoracion}.jpg`;
   }
 
   async validarImagenCamiseta(): Promise<boolean> {
@@ -125,7 +131,7 @@ export class ChaquetasComponent {
     try {
       const fileName = this.fileUploadService.getFileNameFromUrl(this.imagenCamiseta);
       const file = await this.fileUploadService.urlToFile(this.imagenCamiseta, fileName, "image/png");
-      const carac = [this.codigoChaqueta, this.tipo, this.largo, this.sexo,this.contorno_medidas,this.largo_medidas,this.sugerencias , this.precioTotal.toString()];
+      const carac = [this.codigoChaqueta, this.tipo, this.largo,this.decoracion, this.sexo,this.contorno_medidas,this.largo_medidas,this.sugerencias , this.precioTotal.toString()];
       await this.fileUploadService.sendEmail(this.userEmail, file, carac);
       this.showPopupMessage(true, 'Correo enviado exitosamente');
     } catch (error) {

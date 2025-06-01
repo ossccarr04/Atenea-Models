@@ -108,8 +108,8 @@ originalEstilo!: { [K in keyof typeof this.modificacionesEstilo]: string };
       case "Logo frontal":
         decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}f`;
         break;
-      case "Logo trasero":
-        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}t`;
+      case "Logo espalda":
+        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}e`;
         break;
 
 

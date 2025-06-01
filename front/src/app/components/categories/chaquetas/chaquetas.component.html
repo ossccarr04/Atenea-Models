@@ -37,6 +37,9 @@
         <app-largo-chaqueta [(modelo)]="largo"
           (modeloChange)="onCambioDeOpciones(); updatePrecio('largo',$event);"></app-largo-chaqueta>
 
+          <app-decoracion-chaqueta [(modelo)]="decoracion"
+          (modeloChange)="onCambioDeOpciones(); updatePrecio('decoracion',$event);"></app-decoracion-chaqueta>
+
         <div *ngIf="!firstLoad">
           <app-sexo [(modelo)]="sexo"></app-sexo>
 
@@ -91,6 +94,7 @@
       [codigo]="codigoChaqueta"
       [tipo]="tipo"
       [largo]="largo"
+      [decoracion]="decoracion"
       [sexo]="sexo"
       [contorno_medidas]="contorno_medidas"
       [largo_medidas]="largo_medidas"

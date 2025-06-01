@@ -89,23 +89,6 @@ export class VestidosComponent {
     const cuelloStr = this.cuello ? `-c${this.cuello.toLowerCase().charAt(0)}` : '';
     const mangaStr = this.manga != "Sin mangas" ? `-m${this.manga.toLowerCase().charAt(0)}` : '';
 
-    /*
-        let decoracion = '';
-        switch (this.decoracion) {
-          case "Logo grande":
-            decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}g`;
-            break;
-          case "Logo en los laterales":
-            decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}l`;
-            break;
-          case "Eslogan":
-            decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}`;
-            break;
-    
-        }
-    
-        Falta poner la decoracion en el return
-            */
     return `assets/imgs/vestidos/ves-${tipoStr}${largoStr}${cuelloStr}${mangaStr}.jpg`;
   }
 
