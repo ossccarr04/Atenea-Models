@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: 'Faltan datos requeridos: archivo, email o código' });
     }
 
-    let carac1 = '', carac2 = '', carac3 = '', carac4 = '', carac5 = '', modelo = '';
+    let carac1 = '', carac2 = '', carac3 = '', carac4 = '', carac5 = '', carac6 = '', carac7 = '', carac8 = '', carac9 = '', carac10 = '', modelo = '';
 
     switch (codigo.substring(0, 3)) {
       case "CAM":
@@ -43,7 +43,12 @@ export default async function handler(req, res) {
         carac2 = "Manga: " + (fields.manga ? fields.manga[0] : '');
         carac3 = "Cuello: " + (fields.cuello ? fields.cuello[0] : '');
         carac4 = "Largo: " + (fields.largo ? fields.largo[0] : '');
-        carac5 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
+        carac5 = "Decoracion: " + (fields.decoracion ? fields.decoracion[0] : '');
+        carac6 = "Sexo: " + (fields.sexo ? fields.sexo[0] : '');
+        carac7 = "Contorno" + (fields.contorno_medidas ? " (cm): " + fields.contorno_medidas[0] : '');
+        carac8 = "Largo" + (fields.largo_medidas ? " (cm): " + fields.largo_medidas[0] : '');
+        carac9 = "Sugerencia: " + (fields.sugerencias ? fields.sugerencias[0] : '');
+        carac10 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
 
       case "VES":
@@ -52,28 +57,45 @@ export default async function handler(req, res) {
         carac2 = "Manga: " + (fields.manga ? fields.manga[0] : '');
         carac3 = "Cuello: " + (fields.cuello ? fields.cuello[0] : '');
         carac4 = "Largo: " + (fields.largo ? fields.largo[0] : '');
-        carac5 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
+        carac5 = "Sexo: " + (fields.sexo ? fields.sexo[0] : '');
+        carac6 = "Contorno" + (fields.contorno_medidas ? " (cm): " + fields.contorno_medidas[0] : '');
+        carac7 = "Largo" + (fields.largo_medidas ? " (cm): " + fields.largo_medidas[0] : '');
+        carac8 = "Sugerencia: " + (fields.sugerencias ? fields.sugerencias[0] : '');
+        carac9 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
 
       case "PAN":
         modelo = "pantalon";
         carac1 = "Tipo: " + (fields.tipo ? fields.tipo[0] : '');
         carac2 = "Largo: " + (fields.largo ? fields.largo[0] : '');
-        carac3 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
+        carac3 = "Sexo: " + (fields.sexo ? fields.sexo[0] : '');
+        carac4 = "Contorno" + (fields.contorno_medidas ? " (cm): " + fields.contorno_medidas[0] : '');
+        carac5 = "Largo" + (fields.largo_medidas ? " (cm): " + fields.largo_medidas[0] : '');
+        carac6 = "Sugerencia: " + (fields.sugerencias ? fields.sugerencias[0] : '');
+        carac7 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
 
       case "FAL":
         modelo = "falda";
         carac1 = "Entallado: " + (fields.entallado ? fields.entallado[0] : '');
         carac2 = "Largo: " + (fields.largo ? fields.largo[0] : '');
-        carac3 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
+        carac3 = "Sexo: " + (fields.sexo ? fields.sexo[0] : '');
+        carac4 = "Contorno" + (fields.contorno_medidas ? " (cm): " + fields.contorno_medidas[0] : '');
+        carac5 = "Largo" + (fields.largo_medidas ? " (cm): " + fields.largo_medidas[0] : '');
+        carac6 = "Sugerencia: " + (fields.sugerencias ? fields.sugerencias[0] : '');
+        carac7 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
 
       case "CHA":
         modelo = "chaqueta";
         carac1 = "Tipo: " + (fields.tipo ? fields.tipo[0] : '');
         carac2 = "Largo: " + (fields.largo ? fields.largo[0] : '');
-        carac3 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
+        carac3 = "Decoracion: " + (fields.decoracion ? fields.decoracion[0] : '');
+        carac4 = "Sexo: " + (fields.sexo ? fields.sexo[0] : '');
+        carac5 = "Contorno" + (fields.contorno_medidas ? " (cm): " + fields.contorno_medidas[0] : '');
+        carac6 = "Largo" + (fields.largo_medidas ? " (cm): " + fields.largo_medidas[0] : '');
+        carac7 = "Sugerencia: " + (fields.sugerencias ? fields.sugerencias[0] : '');
+        carac8 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
 
       case "OTR":
@@ -103,6 +125,11 @@ ${carac2}
 ${carac3}
 ${carac4}
 ${carac5}
+${carac6}
+${carac7}
+${carac8}
+${carac9}
+${carac10}
 
 Encontrarás adjunta la imagen del diseño.`,
       attachments: [
