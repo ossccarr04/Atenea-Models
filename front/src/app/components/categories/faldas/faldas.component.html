@@ -35,6 +35,23 @@
 
         <app-largo-falda [(modelo)]="largo" (modeloChange)="onCambioDeOpciones();updatePrecio('largo',$event); "></app-largo-falda>
         
+         <div *ngIf="!firstLoad">
+          <app-sexo [(modelo)]="sexo"></app-sexo>
+
+          <app-contorno-medidas [(modelo)]="contorno_medidas" [sexo]="sexo"></app-contorno-medidas>
+
+          <app-largo-medidas [(modelo)]="largo_medidas" [sexo]="sexo"></app-largo-medidas>
+        </div>
+      </div>
+
+      <div class="sugerencias-container mt-3" *ngIf="!firstLoad">
+        <label for="sugerencias" class="form-label"><strong>Sugerencias o comentarios:</strong></label>
+        <textarea id="sugerencias"
+          [(ngModel)]="sugerencias"
+          rows="4"
+          placeholder="Escribe tus sugerencias aquí..."
+          class="form-control">
+        </textarea>
       </div>
 
       <!-- Campo de correo y botón de enviar -->
@@ -72,7 +89,11 @@
       [codigo]="codigoFalda"
       [entallado]="entallado"
       [largo]="largo"
-      [precio]="precioTotal">
+      [sexo]="sexo"
+      [contorno_medidas]="contorno_medidas"
+      [largo_medidas]="largo_medidas"
+      [precio]="precioTotal"
+      [sugerencias]="sugerencias">
     </app-factura>
     <button (click)="closePopup()" class="btn btn-secondary mt-3">Cerrar</button>
   </div>

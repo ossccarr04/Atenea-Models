@@ -29,25 +29,63 @@
 
     <!-- Opciones y formulario a la derecha -->
     <div class="col-md-6">
-      <div class="opciones-container">
+      <div class="opciones-grid">
+        <div class="opcion-item">
+          <app-entallado [(modelo)]="entallado"
+            (modeloChange)="onCambioDeOpciones(); updatePrecio('entallado',$event);">
+          </app-entallado>
+        </div>
 
-        <app-entallado [(modelo)]="entallado"
-          (modeloChange)="onCambioDeOpciones(); updatePrecio('entallado',$event);"></app-entallado>
+        <div class="opcion-item">
+          <app-manga [(modelo)]="manga"
+            (modeloChange)="onCambioDeOpciones(); updatePrecio('manga',$event);">
+          </app-manga>
+        </div>
 
-        <app-manga [(modelo)]="manga"
-          (modeloChange)="onCambioDeOpciones(); updatePrecio('manga',$event);"></app-manga>
+        <div class="opcion-item">
+          <app-cuello [(modelo)]="cuello"
+            (modeloChange)="onCambioDeOpciones(); updatePrecio('cuello',$event);">
+          </app-cuello>
+        </div>
 
-        <app-cuello [(modelo)]="cuello"
-          (modeloChange)="onCambioDeOpciones(); updatePrecio('cuello',$event);"></app-cuello>
+        <div class="opcion-item">
+          <app-largo [(modelo)]="largo"
+            (modeloChange)="onCambioDeOpciones(); updatePrecio('largo',$event);">
+          </app-largo>
+        </div>
 
-        <app-largo [(modelo)]="largo"
-          (modeloChange)="onCambioDeOpciones(); updatePrecio('largo',$event);"></app-largo>
+        <div class="opcion-item">
+          <app-decoracion [(modelo)]="decoracion"
+            (modeloChange)="onCambioDeOpciones(); updatePrecio('decoracion',$event);">
+          </app-decoracion>
+        </div>
 
-        <app-decoracion [(modelo)]="decoracion"
-          (modeloChange)="onCambioDeOpciones(); updatePrecio('decoracion',$event);"></app-decoracion>
+        <div class="opcion-item" *ngIf="!firstLoad">
+          <app-sexo [(modelo)]="sexo"></app-sexo>
+        </div>
 
+        <div class="opcion-item" *ngIf="!firstLoad">
+          <app-contorno-medidas [(modelo)]="contorno_medidas"
+            [sexo]="sexo">
+          </app-contorno-medidas>
+        </div>
+
+        <div class="opcion-item" *ngIf="!firstLoad">
+          <app-largo-medidas [(modelo)]="largo_medidas"
+            [sexo]="sexo">
+          </app-largo-medidas>
+        </div>
       </div>
 
+      <div class="sugerencias-container mt-3" *ngIf="!firstLoad">
+        <label for="sugerencias" class="form-label"><strong>Sugerencias o comentarios:</strong></label>
+        <textarea id="sugerencias"
+          [(ngModel)]="sugerencias"
+          rows="4"
+          placeholder="Escribe tus sugerencias aquí..."
+          class="form-control">
+        </textarea>
+      </div>
       <!-- Campo de correo y botón de enviar -->
       <div class="email-container"
         *ngIf="firstLoad==false; else AcceptTemplate">
@@ -62,16 +100,15 @@
       </div>
 
       <ng-template #AcceptTemplate>
-      <div >
-        <div class="email-container">
-          <button (click)="acceptDesign()"
-            class="btn btn-primary">
-            Aceptar diseño
-          </button>
+        <div>
+          <div class="email-container">
+            <button (click)="acceptDesign()"
+              class="btn btn-primary">
+              Aceptar diseño
+            </button>
+          </div>
         </div>
-      </div>
       </ng-template>
-      
 
     </div>
   </div>
@@ -86,7 +123,12 @@
       [manga]="manga"
       [cuello]="cuello"
       [largo]="largo"
-      [precio]="precioTotal">
+      [precio]="precioTotal"
+      [decoracion]="decoracion"
+      [sexo]="sexo"
+      [contorno_medidas]="contorno_medidas"
+      [largo_medidas]="largo_medidas"
+      [sugerencias]="sugerencias">
     </app-factura>
     <button (click)="closePopup()"
       class="btn btn-secondary mt-3">Cerrar</button>

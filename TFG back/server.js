@@ -35,51 +35,79 @@ app.post('/send-email', upload.single('file'), (req, res) => {
   if (!file || !userEmail || !codigo) {
     return res.status(400).json({ message: 'Faltan datos requeridos: archivo, email o código' });
   }
-  
-  let carac1='', carac2='', carac3='', carac4='', carac5='', modelo='';
 
-  switch(codigo.substring(0, 3)){ // Dependiendo de la prenda, se envían diferentes características
+  let carac1 = '', carac2 = '', carac3 = '', carac4 = '', carac5 = '', carac6 = '', carac7 = '', carac8 = '', carac9 = '', carac10='',modelo = '';
+
+  switch (codigo.substring(0, 3)) { // Dependiendo de la prenda, se envían diferentes características
     case "CAM":
       modelo = "camiseta";
-      carac1= "Entallado: "+req.body.entallado;
-      carac2= "Manga: "+req.body.manga;
-      carac3= "Cuello: "+req.body.cuello;
-      carac4= "Largo: "+req.body.largo;  
-      carac5= "Precio: "+req.body.precio + "€";
+      carac1 = "Entallado: " + req.body.entallado;
+      carac2 = "Manga: " + req.body.manga;
+      carac3 = "Cuello: " + req.body.cuello;
+      carac4 = "Largo: " + req.body.largo;
+      carac5 = "Decoración: " + req.body.decoracion;
+      carac6 = "Sexo: " + req.body.sexo;
+      carac7 = "Contorno (cm): " + req.body.contorno_medidas;
+      carac8 = "Largo (cm): " + req.body.largo_medidas;
+      carac9 = "Sugerencia: " + req.body.sugerencias;
+      carac10 = "Precio: " + req.body.precio + "€";
       break;
 
     case "VES":
       modelo = "vestido";
-      carac1= "Tipo: "+req.body.tipo;
-      carac2= "Manga: "+req.body.manga;
-      carac3= "Cuello: "+req.body.cuello;
-      carac4= "Largo: "+req.body.largo;  
-      carac5= "Precio: "+req.body.precio + "€";
+      carac1 = "Tipo: " + req.body.tipo;
+      carac2 = "Manga: " + req.body.manga;
+      carac3 = "Cuello: " + req.body.cuello;
+      carac4 = "Largo: " + req.body.largo;
+      carac5 = "Sexo: " + req.body.sexo;
+      carac6 = "Contorno (cm): " + req.body.contorno_medidas;
+      carac7 = "Largo (cm): " + req.body.largo_medidas;
+      carac8 = "Sugerencia: " + req.body.sugerencias;
+      carac9 = "Precio: " + req.body.precio + "€";
       break;
-    
+
     case "PAN":
       modelo = "pantalon";
-      carac1= "Tipo: "+req.body.tipo;
-      carac2= "Largo: "+req.body.largo;  
-      carac3= "Precio: "+req.body.precio + "€";
+      carac1 = "Tipo: " + req.body.tipo;
+      carac2 = "Largo: " + req.body.largo;
+      carac3 = "Sexo: " + req.body.sexo;
+      carac4 = "Contorno (cm): " + req.body.contorno_medidas;
+      carac5 = "Largo (cm): " + req.body.largo_medidas;
+      carac6 = "Sugerencia: " + req.body.sugerencias;
+      carac7 = "Precio: " + req.body.precio + "€";
+      break;
 
     case "FAL":
       modelo = "falda";
-      carac1= "Entallado: "+req.body.entallado;
-      carac2= "Largo: "+req.body.largo;
-      carac3= "Precio: "+req.body.precio + "€";
+      carac1 = "Entallado: " + req.body.entallado;
+      carac2 = "Largo: " + req.body.largo;
+      carac3 = "Sexo: " + req.body.sexo;
+      carac4 = "Contorno (cm): " + req.body.contorno_medidas;
+      carac5 = "Largo (cm): " + req.body.largo_medidas;
+      carac6 = "Sugerencia: " + req.body.sugerencias;
+      carac7 = "Precio: " + req.body.precio + "€";
       break;
 
     case "CHA":
       modelo = "chaqueta";
-      carac1= "Tipo: "+req.body.tipo;
-      carac2= "Largo: "+req.body.largo;  
-      carac3= "Precio: "+req.body.precio + "€";
+      carac1 = "Tipo: " + req.body.tipo;
+      carac2 = "Largo: " + req.body.largo;
+      //carac3 = "Decroración: " + req.body.decoracion;
+      carac3 = "Sexo: " + req.body.sexo;
+      carac4 = "Contorno (cm): " + req.body.contorno_medidas;
+      carac5 = "Largo (cm): " + req.body.largo_medidas;
+      carac6 = "Sugerencia: " + req.body.sugerencias;
+      carac7 = "Precio: " + req.body.precio + "€";
       break;
 
     case "OTR":
       modelo = "diseño personalizado";
-      carac1= "Precio: "+req.body.precio + "€";
+      /*
+      carac3 = "Sexo: " + req.body.sexo;
+      carac4 = "Contorno (cm): " + req.body.contorno;
+      carac5 = "Largo (cm): " + req.body.largo_medidas; 
+      */
+      carac1 = "Precio: " + req.body.precio + "€";
   }
 
   // Configurar el transporte con nodemailer usando las variables de entorno
@@ -100,12 +128,17 @@ app.post('/send-email', upload.single('file'), (req, res) => {
     to: process.env.EMAIL_USER,   // El correo configurado en el .env para recibir el correo
     subject: 'Diseño subido. Codigo de compra: ' + codigo, // Asunto del correo
     text: `Aquí tienes los detalles de tu ${modelo}:\n\n
-          ${"Codigo: "+codigo}
-          ${carac1 ? carac1:''}
-          ${carac2 ? carac2:''}
-          ${carac3 ? carac3:''}
-          ${carac4 ? carac4:''}
-          ${carac5 ? carac5:''}\n
+          ${"Codigo: " + codigo}
+          ${carac1 ? carac1 : ''}
+          ${carac2 ? carac2 : ''}
+          ${carac3 ? carac3 : ''}
+          ${carac4 ? carac4 : ''}
+          ${carac5 ? carac5 : ''}
+          ${carac6 ? carac6 : ''}
+          ${carac7 ? carac7 : ''}
+          ${carac8 ? carac8 : ''}
+          ${carac9 ? carac9 : ''}
+          ${carac10 ? carac10 : ''}\n
       Encontrarás adjunta la imagen del diseño.`,// Mensaje del correo
     attachments: [
       {
@@ -133,5 +166,5 @@ app.listen(port, () => {
 });
 
 
-  
-  
+
+

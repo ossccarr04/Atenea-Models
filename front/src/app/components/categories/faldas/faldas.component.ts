@@ -25,6 +25,11 @@ export class FaldasComponent {
   entallado: string = "Evase"
   largo: string = "Larga"
 
+  
+  sexo: string = "Hombre";
+  contorno_medidas: string = "XS";
+  largo_medidas: string = "XS";
+  sugerencias: string = '';
 
   modificacionesEstilo = {
     entallado: false,
@@ -125,7 +130,7 @@ export class FaldasComponent {
     try {
       const fileName = this.fileUploadService.getFileNameFromUrl(this.imagenFalda);
       const file = await this.fileUploadService.urlToFile(this.imagenFalda, fileName, "image/jpg");
-      const carac = [this.codigoFalda, this.entallado, this.largo, this.precioTotal.toString()];
+      const carac = [this.codigoFalda, this.entallado, this.largo, this.sexo,this.contorno_medidas,this.largo_medidas, this.sugerencias, this.precioTotal.toString()];
       await this.fileUploadService.sendEmail(this.userEmail, file, carac);
       this.showPopupMessage(true, 'Correo enviado exitosamente');
     } catch (error) {

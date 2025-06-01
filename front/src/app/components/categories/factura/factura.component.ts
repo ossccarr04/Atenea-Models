@@ -16,6 +16,11 @@ export class FacturaComponent{
   @Input() cuello!: string;
   @Input() largo!: string;
   @Input() precio!: number;
+  @Input() decoracion!: string;
+  @Input() sexo!: string;
+  @Input() contorno_medidas!: string;
+  @Input() largo_medidas!: string;
+  @Input() sugerencias!: string;
 
 
 

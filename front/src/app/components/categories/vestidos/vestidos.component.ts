@@ -27,6 +27,11 @@ export class VestidosComponent {
   cuello: string = "Pico"
   manga: string = "Larga"
 
+  sexo: string = "Hombre";
+  contorno_medidas: string = "XS";
+  largo_medidas: string = "XS";
+  sugerencias: string = '';
+
 
  
 
@@ -134,7 +139,7 @@ export class VestidosComponent {
     try {
       const fileName = this.fileUploadService.getFileNameFromUrl(this.imagenVestido);
       const file = await this.fileUploadService.urlToFile(this.imagenVestido, fileName, "image/jpg");
-      const carac = [this.codigoVestido, this.tipo, this.manga, this.cuello, this.largo, this.precioTotal.toString()];
+      const carac = [this.codigoVestido, this.tipo, this.manga, this.cuello, this.largo,this.sexo,this.contorno_medidas,this.largo_medidas,this.sugerencias, this.precioTotal.toString()];
       await this.fileUploadService.sendEmail(this.userEmail, file, carac);
       this.showPopupMessage(true, 'Correo enviado exitosamente');
     } catch (error) {

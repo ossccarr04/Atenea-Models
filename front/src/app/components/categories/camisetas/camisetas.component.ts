@@ -28,6 +28,11 @@ export class CamisetasComponent {
   cuello: string = "Pico"
   largo: string = "Normal"
   decoracion: string = "Sin decoracion"
+
+  sexo: string = "Hombre";
+  contorno_medidas: string = "XS";
+  largo_medidas: string = "XS";
+  sugerencias: string = '';
   
 
   modificacionesEstilo = {
@@ -106,9 +111,7 @@ originalEstilo!: { [K in keyof typeof this.modificacionesEstilo]: string };
       case "Logo trasero":
         decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}t`;
         break;
-      case "Eslogan":
-        decoracion = `-d${this.decoracion.toLowerCase().substring(0, 2)}`;
-        break;
+
 
     }
     return `assets/imgs/camisetas/cam-${entalladoStr}${mangaStr}${cuelloStr}${largoStr}${decoracion}.png`;
@@ -144,7 +147,7 @@ originalEstilo!: { [K in keyof typeof this.modificacionesEstilo]: string };
     try {
       const fileName = this.fileUploadService.getFileNameFromUrl(this.imagenCamiseta);
       const file = await this.fileUploadService.urlToFile(this.imagenCamiseta, fileName, "image/png");
-      const carac = [this.codigoCamiseta, this.entallado, this.manga, this.cuello, this.largo, this.precioTotal.toString()];
+      const carac = [this.codigoCamiseta, this.entallado, this.manga, this.cuello, this.largo, this.decoracion,this.sexo,this.contorno_medidas,this.largo_medidas, this.sugerencias ,this.precioTotal.toString()];
       await this.fileUploadService.sendEmail(this.userEmail, file, carac);
       this.showPopupMessage(true, 'Correo enviado exitosamente');
     } catch (error) {
@@ -174,11 +177,25 @@ originalEstilo!: { [K in keyof typeof this.modificacionesEstilo]: string };
     const mangaStr = this.manga.substring(0, 2).toUpperCase();
     const cuelloStr = this.cuello.substring(0, 2).toUpperCase();
     const largoStr = this.largo.substring(0, 2).toUpperCase();
+    let decoracionStr = '';
+    switch (this.decoracion) {
+      case "Sin decoracion":
+        decoracionStr = '';
+        break;
+      case "Logo frontal":
+        decoracionStr = `${this.decoracion.toLowerCase().substring(0, 2)}f`.toUpperCase();
+        break;
+      case "Logo trasero":
+        decoracionStr = `${this.decoracion.toLowerCase().substring(0, 2)}t`.toUpperCase();
+        break;
+
+
+    }
 
     const now = new Date();
     const formattedDate = `${now.getFullYear()}_${(now.getMonth() + 1).toString().padStart(2, '0')}_${now.getDate().toString().padStart(2, '0')}_${now.getHours().toString().padStart(2, '0')}_${now.getMinutes().toString().padStart(2, '0')}`;
 
-    return `CAM-${entalladoStr}${mangaStr}${cuelloStr}${largoStr}-${formattedDate}`; // Agregamos timestamp para evitar duplicados
+    return `CAM-${entalladoStr}${mangaStr}${cuelloStr}${largoStr}${decoracionStr}-${formattedDate}`; // Agregamos timestamp para evitar duplicados
   }
 }
 

@@ -26,6 +26,10 @@ export class ChaquetasComponent {
   tipo: string = "Normal" 
   largo: string = "Larga"
 
+  sexo: string = "Hombre";
+  contorno_medidas: string = "XS";
+  largo_medidas: string = "XS";
+  sugerencias: string = '';
 
   modificacionesEstilo = {
     tipo: false,
@@ -121,7 +125,7 @@ export class ChaquetasComponent {
     try {
       const fileName = this.fileUploadService.getFileNameFromUrl(this.imagenCamiseta);
       const file = await this.fileUploadService.urlToFile(this.imagenCamiseta, fileName, "image/png");
-      const carac = [this.codigoChaqueta, this.tipo, this.largo, this.precioTotal.toString()];
+      const carac = [this.codigoChaqueta, this.tipo, this.largo, this.sexo,this.contorno_medidas,this.largo_medidas,this.sugerencias , this.precioTotal.toString()];
       await this.fileUploadService.sendEmail(this.userEmail, file, carac);
       this.showPopupMessage(true, 'Correo enviado exitosamente');
     } catch (error) {

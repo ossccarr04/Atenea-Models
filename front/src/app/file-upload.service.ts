@@ -52,7 +52,12 @@ export class FileUploadService {
         formData.append('manga', carac[2]);
         formData.append('cuello', carac[3]);
         formData.append('largo', carac[4]);
-        formData.append('precio', carac[5]);
+        formData.append('decoracion', carac[5]);
+        formData.append('sexo', carac[6]);
+        formData.append('contorno_medidas', carac[7]);
+        formData.append('largo_medidas', carac[8]);
+        formData.append('sugerencias', carac[9]);
+        formData.append('precio', carac[10]);
         break;
       case "VES":
         formData.append('codigo', carac[0]);
@@ -60,25 +65,42 @@ export class FileUploadService {
         formData.append('manga', carac[2]);
         formData.append('cuello', carac[3]);
         formData.append('largo', carac[4]);
-        formData.append('precio', carac[5]);
+        formData.append('sexo', carac[5]);
+        formData.append('contorno_medidas', carac[6]);
+        formData.append('largo_medidas', carac[7]);
+        formData.append('sugerencias', carac[8]);
+        formData.append('precio', carac[9]);
         break;
       case "PAN":
         formData.append('codigo', carac[0]);
         formData.append('tipo', carac[1]);
         formData.append('largo', carac[2]);
-        formData.append('precio', carac[3]);
+        formData.append('sexo', carac[3]);
+        formData.append('contorno_medidas', carac[4]);
+        formData.append('largo_medidas', carac[5]);
+        formData.append('sugerencias', carac[6]);
+        formData.append('precio', carac[7]);
         break;
       case "FAL":
         formData.append('codigo', carac[0]);
         formData.append('entallado', carac[1]);
         formData.append('largo', carac[2]);
-        formData.append('precio', carac[3]);
+        formData.append('sexo', carac[3]);
+        formData.append('contorno_medidas', carac[4]);
+        formData.append('largo_medidas', carac[5]);
+        formData.append('sugerencias', carac[6]);
+        formData.append('precio', carac[7]);
         break;
       case "CHA":
         formData.append('codigo', carac[0]);
         formData.append('tipo', carac[1]);
         formData.append('largo', carac[2]);
-        formData.append('precio', carac[3]);
+        //formData.append('decoracion', carac[4]);
+        formData.append('sexo', carac[3]);
+        formData.append('contorno_medidas', carac[4]);
+        formData.append('largo_medidas', carac[5]);
+        formData.append('sugerencias', carac[6]);
+        formData.append('precio', carac[7]);
         break;
       case "OTR":
         formData.append('codigo', carac[0]);

@@ -15,6 +15,9 @@ import { LargoFaldaComponent} from './faldas/largo-falda/largo-falda.component';
 import { EntalladoFaldaComponent } from './faldas/entallado-falda/entallado-falda.component';
 import { TipoChaquetaComponent } from './chaquetas/tipo-chaqueta/tipo-chaqueta.component';
 import { LargoChaquetaComponent } from './chaquetas/largo-chaqueta/largo-chaqueta.component';
+import { SexoComponent } from './sexo/sexo.component';
+import { LargoMedidasComponent } from './largo-medidas/largo-medidas.component';
+import { ContornoMedidasComponent } from './contorno-medidas/contorno-medidas.component';
 
 
 
@@ -35,7 +38,10 @@ import { LargoChaquetaComponent } from './chaquetas/largo-chaqueta/largo-chaquet
     EntalladoFaldaComponent,
     LargoFaldaComponent,
     TipoChaquetaComponent,
-    LargoChaquetaComponent
+    LargoChaquetaComponent,
+    SexoComponent,
+    LargoMedidasComponent,
+    ContornoMedidasComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +62,10 @@ import { LargoChaquetaComponent } from './chaquetas/largo-chaqueta/largo-chaquet
     EntalladoFaldaComponent,
     LargoFaldaComponent,
     TipoChaquetaComponent,
-    LargoChaquetaComponent
+    LargoChaquetaComponent,
+    SexoComponent,
+    LargoMedidasComponent,
+    ContornoMedidasComponent
   ]
 })
 export class ClothingOptionsModule { }

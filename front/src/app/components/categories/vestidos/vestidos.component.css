@@ -145,6 +145,50 @@ h1 {
   color: #555;
   font-style: italic;
 }
+
+.opciones-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas */
+  gap: 14px 20px; /* Espaciado entre filas y columnas */
+  margin-top: 10px;
+}
+
+.opcion-item {
+  display: flex;
+  flex-direction: column;
+}
+
+:host ::ng-deep app-contorno-medidas select,
+:host ::ng-deep app-largo-medidas select,
+:host ::ng-deep app-sexo select {
+  font-size: 1.1rem;
+  padding: 10px;
+  width: 50%; /* o un ancho mayor */
+  max-width: 300px;
+}
+
+.sugerencias-container label {
+  width: 60%;
+  max-width: 500px;
+  padding: 10px;
+  font-size: 1rem;
+  resize: vertical;
+  display: block;
+  margin: 0 auto; /* <--- Centra horizontalmente */
+}
+
+.sugerencias-container textarea {
+  width: 60%;
+  max-width: 500px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+  display: block;
+  margin: 0 auto; /* <--- Centra horizontalmente */
+}
+
 /* Ajustar contenedor principal en móviles */
 @media (max-width: 768px) {
   .camiseta-container {

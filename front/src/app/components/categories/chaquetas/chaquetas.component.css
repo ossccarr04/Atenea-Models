@@ -165,6 +165,29 @@ h1 {
   font-style: italic;
 }
 
+
+.sugerencias-container label {
+  width: 60%;
+  max-width: 500px;
+  padding: 10px;
+  font-size: 1rem;
+  resize: vertical;
+  display: block;
+  margin: 0 auto; /* <--- Centra horizontalmente */
+}
+
+.sugerencias-container textarea {
+  width: 60%;
+  max-width: 500px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+  display: block;
+  margin: 0 auto; /* <--- Centra horizontalmente */
+}
+
 /* Ajustar contenedor principal en móviles */
 @media (max-width: 768px) {
   .camiseta-container {
