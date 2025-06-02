@@ -6,9 +6,19 @@
             El diseño propio tiene un coste de {{precioTotal}} €.
         </p>
 
-        <label for="email">Correo Electrónico</label>
+        <label for="email"><strong>Correo Electrónico</strong></label>
         <input type="email" (change)="onEmailChange($event)"
-          placeholder="Ingresa tu correo" class="form-control" required />
+            placeholder="Ingresa tu correo" class="form-control" required />
+
+        <div class="sugerencias-container mt-3" >
+            <label for="sugerencias" class="form-label fw-semibold">Sugerencias o comentarios</label>
+            <textarea id="sugerencias"
+                [(ngModel)]="sugerencias"
+                rows="4"
+                placeholder="Escribe tus sugerencias aquí..."
+                class="form-control">
+        </textarea>
+        </div>
 
         <input type="file" accept="image/png, image/jpeg, image/jpg"
             (change)="onFileSelected($event)" />
@@ -23,17 +33,17 @@
             [disabled]="!selectedFile || !userEmail">Enviar</button>
     </div>
 
-    
 </div>
 
 <div *ngIf="showPopup" class="popup-overlay show">
-        <div class="popup-backdrop"></div>
-        <div class="popup-content">
-            <app-factura
-                [codigo]="codigoCamiseta"
-                [precio]="precioTotal">
-            </app-factura>
-            <button (click)="closePopup()"
-                class="btn btn-secondary mt-3">Cerrar</button>
-        </div>
+    <div class="popup-backdrop"></div>
+    <div class="popup-content">
+        <app-factura
+            [codigo]="codigoCamiseta"
+            [sugerencias]="sugerencias"
+            [precio]="precioTotal">
+        </app-factura>
+        <button (click)="closePopup()"
+            class="btn btn-secondary mt-3">Cerrar</button>
     </div>
+</div>

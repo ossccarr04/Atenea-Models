@@ -36,7 +36,7 @@ app.post('/send-email', upload.single('file'), (req, res) => {
     return res.status(400).json({ message: 'Faltan datos requeridos: archivo, email o código' });
   }
 
-  let carac1 = '', carac2 = '', carac3 = '', carac4 = '', carac5 = '', carac6 = '', carac7 = '', carac8 = '', carac9 = '', carac10='',modelo = '';
+  let carac1 = '', carac2 = '', carac3 = '', carac4 = '', carac5 = '', carac6 = '', carac7 = '', carac8 = '', carac9 = '', carac10 = '', modelo = '';
 
   switch (codigo.substring(0, 3)) { // Dependiendo de la prenda, se envían diferentes características
     case "CAM":
@@ -107,7 +107,8 @@ app.post('/send-email', upload.single('file'), (req, res) => {
       carac4 = "Contorno (cm): " + req.body.contorno;
       carac5 = "Largo (cm): " + req.body.largo_medidas; 
       */
-      carac1 = "Precio: " + req.body.precio + "€";
+      carac1 = "Sugerencia: " + req.body.sugerencias;
+      carac2 = "Precio: " + req.body.precio + "€";
   }
 
   // Configurar el transporte con nodemailer usando las variables de entorno

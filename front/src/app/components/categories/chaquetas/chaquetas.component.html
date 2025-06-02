@@ -29,28 +29,43 @@
 
     <!-- Opciones y formulario a la derecha -->
     <div class="col-md-6">
-      <div class="opciones-container">
 
-        <app-tipo-chaqueta [(modelo)]="tipo"
-          (modeloChange)="onCambioDeOpciones(); updatePrecio('tipo',$event);"></app-tipo-chaqueta>
+      <div class="opciones-grid">
+        <div class="opcion-item">
+          <app-tipo-chaqueta [(modelo)]="tipo"
+            (modeloChange)="onCambioDeOpciones(); updatePrecio('tipo',$event);"></app-tipo-chaqueta>
+        </div>
 
-        <app-largo-chaqueta [(modelo)]="largo"
-          (modeloChange)="onCambioDeOpciones(); updatePrecio('largo',$event);"></app-largo-chaqueta>
+        <div class="opcion-item">
+          <app-largo-chaqueta [(modelo)]="largo"
+            (modeloChange)="onCambioDeOpciones(); updatePrecio('largo',$event);"></app-largo-chaqueta>
+        </div>
 
+        <div class="opcion-item">
           <app-decoracion-chaqueta [(modelo)]="decoracion"
-          (modeloChange)="onCambioDeOpciones(); updatePrecio('decoracion',$event);"></app-decoracion-chaqueta>
+            (modeloChange)="onCambioDeOpciones(); updatePrecio('decoracion',$event);"></app-decoracion-chaqueta>
+        </div>
 
-        <div *ngIf="!firstLoad">
+        <div class="opcion-item" *ngIf="!firstLoad">
           <app-sexo [(modelo)]="sexo"></app-sexo>
+        </div>
 
-          <app-contorno-medidas [(modelo)]="contorno_medidas" [sexo]="sexo"></app-contorno-medidas>
+        <div class="opcion-item" *ngIf="!firstLoad">
+          <app-contorno-medidas [(modelo)]="contorno_medidas"
+            [sexo]="sexo">
+          </app-contorno-medidas>
+        </div>
 
-          <app-largo-medidas [(modelo)]="largo_medidas" [sexo]="sexo"></app-largo-medidas>
+        <div class="opcion-item" *ngIf="!firstLoad">
+          <app-largo-medidas [(modelo)]="largo_medidas"
+            [sexo]="sexo">
+          </app-largo-medidas>
         </div>
       </div>
 
       <div class="sugerencias-container mt-3" *ngIf="!firstLoad">
-        <label for="sugerencias" class="form-label"><strong>Sugerencias o comentarios:</strong></label>
+        <label for="sugerencias" class="form-label fw-semibold">Sugerencias o
+          comentarios</label>
         <textarea id="sugerencias"
           [(ngModel)]="sugerencias"
           rows="4"
@@ -85,23 +100,22 @@
 
     </div>
   </div>
-</div>
 
-<div *ngIf="showPopup" class="popup-overlay show">
-  <div class="popup-backdrop"></div>
-  <div class="popup-content">
-    <app-factura
-      [codigo]="codigoChaqueta"
-      [tipo]="tipo"
-      [largo]="largo"
-      [decoracion]="decoracion"
-      [sexo]="sexo"
-      [contorno_medidas]="contorno_medidas"
-      [largo_medidas]="largo_medidas"
-      [precio]="precioTotal"
-      [sugerencias]="sugerencias">
-    </app-factura>
-    <button (click)="closePopup()"
-      class="btn btn-secondary mt-3">Cerrar</button>
+  <div *ngIf="showPopup" class="popup-overlay show">
+    <div class="popup-backdrop"></div>
+    <div class="popup-content">
+      <app-factura
+        [codigo]="codigoChaqueta"
+        [tipo]="tipo"
+        [largo]="largo"
+        [decoracion]="decoracion"
+        [sexo]="sexo"
+        [contorno_medidas]="contorno_medidas"
+        [largo_medidas]="largo_medidas"
+        [precio]="precioTotal"
+        [sugerencias]="sugerencias">
+      </app-factura>
+      <button (click)="closePopup()"
+        class="btn btn-secondary mt-3">Cerrar</button>
+    </div>
   </div>
-</div>

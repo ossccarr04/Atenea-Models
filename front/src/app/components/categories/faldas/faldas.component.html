@@ -29,23 +29,35 @@
 
     <!-- Opciones y formulario a la derecha -->
     <div class="col-md-6">
-      <div class="opciones-container">
-        
-        <app-entallado-falda [(modelo)]="entallado" (modeloChange)="onCambioDeOpciones();updatePrecio('entallado',$event);"></app-entallado-falda>
 
-        <app-largo-falda [(modelo)]="largo" (modeloChange)="onCambioDeOpciones();updatePrecio('largo',$event); "></app-largo-falda>
-        
-         <div *ngIf="!firstLoad">
+      <div class="opciones-grid">
+        <div class="opcion-item">
+          <app-entallado-falda [(modelo)]="entallado" (modeloChange)="onCambioDeOpciones();updatePrecio('entallado',$event);"></app-entallado-falda>
+        </div>
+
+        <div class="opcion-item">
+           <app-largo-falda [(modelo)]="largo" (modeloChange)="onCambioDeOpciones();updatePrecio('largo',$event); "></app-largo-falda>
+        </div>
+
+        <div class="opcion-item" *ngIf="!firstLoad">
           <app-sexo [(modelo)]="sexo"></app-sexo>
+        </div>
 
-          <app-contorno-medidas [(modelo)]="contorno_medidas" [sexo]="sexo"></app-contorno-medidas>
+        <div class="opcion-item" *ngIf="!firstLoad">
+          <app-contorno-medidas [(modelo)]="contorno_medidas"
+            [sexo]="sexo">
+          </app-contorno-medidas>
+        </div>
 
-          <app-largo-medidas [(modelo)]="largo_medidas" [sexo]="sexo"></app-largo-medidas>
+        <div class="opcion-item" *ngIf="!firstLoad">
+          <app-largo-medidas [(modelo)]="largo_medidas"
+            [sexo]="sexo">
+          </app-largo-medidas>
         </div>
       </div>
 
       <div class="sugerencias-container mt-3" *ngIf="!firstLoad">
-        <label for="sugerencias" class="form-label"><strong>Sugerencias o comentarios:</strong></label>
+        <label for="sugerencias" class="form-label fw-semibold">Sugerencias o comentarios</label>
         <textarea id="sugerencias"
           [(ngModel)]="sugerencias"
           rows="4"

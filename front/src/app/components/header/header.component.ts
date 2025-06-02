@@ -10,20 +10,19 @@ export class HeaderComponent {
 
   @ViewChild('navbarCollapse') navBarCollapsed!: ElementRef;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   navigateToInicio() {
-    this.router.navigate(['/inicio']).then(() => this.closeNavbar());
+    this.router.navigate(['/inicio']);
   }
 
   navigateToSobreNosotros() {
-    this.router.navigate(['/sobre-nosotros']).then(() => this.closeNavbar());
+    this.router.navigate(['/sobre-nosotros']);
   }
 
   navigateToAyuda() {
     const baseUrl = window.location.origin;
     window.open(`${baseUrl}/ayuda`, '_blank');
-    this.closeNavbar();
   }
 
   closeNavbar() {
@@ -34,5 +33,8 @@ export class HeaderComponent {
       });
       bsCollapse.hide();
     }
+  }
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

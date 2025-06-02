@@ -33,18 +33,21 @@
   margin-top: 10px;
 }
 
+
 .email-container {
-  margin-left: 24.4%;
-  padding-left: 10%;
+  margin-right: 12%;
   margin-top: 18px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
 }
 
 .email-container label {
   font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2%;
 }
 
 .email-container input {
@@ -166,12 +169,33 @@ h1 {
 }
 
 
+.opciones-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas */
+  gap: 14px 20px; /* Espaciado entre filas y columnas */
+  margin-top: 10px;
+}
+
+.opcion-item {
+  display: flex;
+  flex-direction: column;
+}
+:host ::ng-deep app-contorno-medidas select,
+:host ::ng-deep app-largo-medidas select,
+:host ::ng-deep app-sexo select {
+  font-size: 1.1rem;
+  padding: 10px;
+  width: 50%; /* o un ancho mayor */
+  max-width: 300px;
+}
+
 .sugerencias-container label {
   width: 60%;
   max-width: 500px;
   padding: 10px;
   font-size: 1rem;
   resize: vertical;
+  text-align: center; /* Alinea el texto del label */
   display: block;
   margin: 0 auto; /* <--- Centra horizontalmente */
 }
@@ -243,4 +267,37 @@ h1 {
     box-sizing: border-box !important;
     display: block !important;
   }
+
+   .opciones-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+   .sugerencias-container {
+    width: 100% !important;
+    padding: 0 10px !important;
+    box-sizing: border-box;
+  }
+
+  .sugerencias-container label {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 1rem !important;
+    text-align: center !important; /* Alinea el texto del label */
+    margin: 0 auto 10px auto !important;
+    display: block !important;
+  }
+
+  .sugerencias-container textarea {
+    width: 85% !important;
+    max-width: 100% !important;
+    padding: 10px !important;
+    font-size: 1rem !important;
+    margin: 0 auto !important;
+    margin-bottom: 5% !important; /* margen inferior para separación */
+    display: block !important;
+    min-height: 120px;
+    resize: vertical;
+    box-sizing: border-box !important;
+  }
+
 }

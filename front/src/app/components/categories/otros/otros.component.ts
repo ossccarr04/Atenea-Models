@@ -17,6 +17,7 @@ export class OtrosComponent {
   popupMessage: string = '';
 
   precioTotal:number = 10;
+  sugerencias: string = '';
   
   constructor(private fileUploadService: FileUploadService) {}
 
@@ -41,7 +42,7 @@ export class OtrosComponent {
     if (!this.selectedFile || !this.userEmail) return;
 
     try {
-      const carac=[this.codigoCamiseta,this.precioTotal.toString()]
+      const carac=[this.codigoCamiseta,this.sugerencias,this.precioTotal.toString()]
       // Enviamos tanto el archivo como el correo al servidor
       await this.fileUploadService.sendEmail(this.userEmail,this.selectedFile,carac);
       this.showPopupMessage(true, 'Correo enviado exitosamente');

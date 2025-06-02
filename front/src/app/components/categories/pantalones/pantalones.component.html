@@ -1,6 +1,6 @@
 <div class="camiseta-container container mt-4">
   <h1 class="fw-bold text-center">Pantalones</h1>
-<p class="texto-explicativo text-center mb-3"
+  <p class="texto-explicativo text-center mb-3"
     *ngIf="firstLoad==false; else firstLoadTemplate">
     Cada parte modificada tiene un coste adicional de {{precio}} €.
   </p>
@@ -10,7 +10,6 @@
       Selecciona las opciones de tu camiseta actual.
     </p>
   </ng-template>
-  
 
   <div class="row align-items-center">
     <!-- Imagen a la izquierda (más grande) -->
@@ -20,7 +19,7 @@
           class="pantalon-imagen img-fluid mb-2" />
 
         <!-- Precio total integrado debajo -->
-         <div class="precio-total-box mt-2 d-inline-block" *ngIf="!firstLoad">
+        <div class="precio-total-box mt-2 d-inline-block" *ngIf="!firstLoad">
           <span class="fw-bold">Precio Total: </span>
           <span class="fs-5">{{ precioTotal | number:'1.2-2' }} €</span>
         </div>
@@ -29,24 +28,38 @@
 
     <!-- Opciones y formulario a la derecha -->
     <div class="col-md-6">
-      <div class="opciones-container">
-        
-        <app-tipo-pantalon [(modelo)]="tipo" (modeloChange)="onCambioDeOpciones();updatePrecio('tipo',$event);"></app-tipo-pantalon>
 
-        <app-largo-pantalon [(modelo)]="largo" (modeloChange)="onCambioDeOpciones();updatePrecio('largo',$event); "></app-largo-pantalon>
-        
-        <div *ngIf="!firstLoad">
-          <app-sexo [(modelo)]="sexo"></app-sexo>
-
-          <app-contorno-medidas [(modelo)]="contorno_medidas" [sexo]="sexo"></app-contorno-medidas>
-
-          <app-largo-medidas [(modelo)]="largo_medidas" [sexo]="sexo"></app-largo-medidas>
+      <div class="opciones-grid">
+        <div class="opcion-item">
+          <app-tipo-pantalon [(modelo)]="tipo"
+            (modeloChange)="onCambioDeOpciones();updatePrecio('tipo',$event);"></app-tipo-pantalon>
         </div>
 
+        <div class="opcion-item">
+          <app-largo-pantalon [(modelo)]="largo"
+            (modeloChange)="onCambioDeOpciones();updatePrecio('largo',$event); "></app-largo-pantalon>
+        </div>
+
+        <div class="opcion-item" *ngIf="!firstLoad">
+          <app-sexo [(modelo)]="sexo"></app-sexo>
+        </div>
+
+        <div class="opcion-item" *ngIf="!firstLoad">
+          <app-contorno-medidas [(modelo)]="contorno_medidas"
+            [sexo]="sexo">
+          </app-contorno-medidas>
+        </div>
+
+        <div class="opcion-item" *ngIf="!firstLoad">
+          <app-largo-medidas [(modelo)]="largo_medidas"
+            [sexo]="sexo">
+          </app-largo-medidas>
+        </div>
       </div>
 
       <div class="sugerencias-container mt-3" *ngIf="!firstLoad">
-        <label for="sugerencias" class="form-label"><strong>Sugerencias o comentarios:</strong></label>
+        <label for="sugerencias" class="form-label fw-semibold">Sugerencias o
+          comentarios</label>
         <textarea id="sugerencias"
           [(ngModel)]="sugerencias"
           rows="4"
@@ -69,17 +82,15 @@
       </div>
 
       <ng-template #AcceptTemplate>
-      <div >
-        <div class="email-container">
-          <button (click)="acceptDesign()"
-            class="btn btn-primary">
-            Aceptar diseño
-          </button>
+        <div>
+          <div class="email-container">
+            <button (click)="acceptDesign()"
+              class="btn btn-primary">
+              Aceptar diseño
+            </button>
+          </div>
         </div>
-      </div>
       </ng-template>
-
-
 
     </div>
   </div>
@@ -98,6 +109,7 @@
       [precio]="precioTotal"
       [sugerencias]="sugerencias">
     </app-factura>
-    <button (click)="closePopup()" class="btn btn-secondary mt-3">Cerrar</button>
+    <button (click)="closePopup()"
+      class="btn btn-secondary mt-3">Cerrar</button>
   </div>
 </div>
