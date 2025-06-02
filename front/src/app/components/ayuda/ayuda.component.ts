@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AyudaComponent implements OnInit {
 
+  precio: number = 7.85; // Precio base de la camiseta
+
   constructor() { }
 
   ngOnInit(): void {

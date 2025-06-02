@@ -3,21 +3,41 @@
     <div id="accesorios" class="categoria">
         <h2>Diseño Propio</h2>
         <p class="texto-explicativo text-center mb-3">
-            El diseño propio tiene un coste de {{precioTotal}} €.
+            Cada modificación que se quiera llevar a cabo tendra un importe de
+            {{precio}} €.
         </p>
 
         <label for="email"><strong>Correo Electrónico</strong></label>
         <input type="email" (change)="onEmailChange($event)"
             placeholder="Ingresa tu correo" class="form-control" required />
 
-        <div class="sugerencias-container mt-3" >
-            <label for="sugerencias" class="form-label fw-semibold">Sugerencias o comentarios</label>
+        <div class="sugerencias-container mt-3">
+            <label for="sugerencias" class="form-label fw-semibold">Cambios
+                deseados</label>
             <textarea id="sugerencias"
                 [(ngModel)]="sugerencias"
                 rows="4"
                 placeholder="Escribe tus sugerencias aquí..."
                 class="form-control">
-        </textarea>
+            </textarea>
+
+        </div>
+        <div class="mt-3">
+            <label for="modificaciones" class="form-label fw-semibold">Número de
+                modificaciones</label>
+            <select
+                id="modificaciones"
+                class="form-select"
+                [(ngModel)]="numeroModificaciones"
+                (change)="updatePrecio()">
+                <option *ngFor="let n of [0, 1, 2, 3, 4]" [value]="n">{{ n
+                    }}</option>
+            </select>
+        </div>
+
+        <div class="precio-total-box mt-2 d-inline-block">
+            <span class="fw-bold">Precio Total: </span>
+            <span class="fs-5">{{ precioTotal | number:'1.2-2' }} €</span>
         </div>
 
         <input type="file" accept="image/png, image/jpeg, image/jpg"
@@ -41,9 +61,11 @@
         <app-factura
             [codigo]="codigoCamiseta"
             [sugerencias]="sugerencias"
+            [numeroModificaciones]="numeroModificaciones"
             [precio]="precioTotal">
         </app-factura>
         <button (click)="closePopup()"
             class="btn btn-secondary mt-3">Cerrar</button>
     </div>
 </div>
+<br>

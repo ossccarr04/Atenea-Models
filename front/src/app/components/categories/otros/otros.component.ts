@@ -16,7 +16,9 @@ export class OtrosComponent {
   showPopup: boolean = false;
   popupMessage: string = '';
 
-  precioTotal:number = 10;
+  precio: number = 7.85; // Precio base de la camiseta
+  precioTotal:number = 0;
+  numeroModificaciones: number = 0;
   sugerencias: string = '';
   
   constructor(private fileUploadService: FileUploadService) {}
@@ -37,12 +39,17 @@ export class OtrosComponent {
     }
   }
 
+  updatePrecio() {
+    this.precioTotal = this.precio * this.numeroModificaciones
+  }
+
+
   // Método para enviar el correo
   async onSendEmail() {
     if (!this.selectedFile || !this.userEmail) return;
 
     try {
-      const carac=[this.codigoCamiseta,this.sugerencias,this.precioTotal.toString()]
+      const carac=[this.codigoCamiseta,this.sugerencias,this.numeroModificaciones.toString(),this.precioTotal.toString()]
       // Enviamos tanto el archivo como el correo al servidor
       await this.fileUploadService.sendEmail(this.userEmail,this.selectedFile,carac);
       this.showPopupMessage(true, 'Correo enviado exitosamente');

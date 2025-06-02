@@ -102,13 +102,9 @@ app.post('/send-email', upload.single('file'), (req, res) => {
 
     case "OTR":
       modelo = "diseño personalizado";
-      /*
-      carac3 = "Sexo: " + req.body.sexo;
-      carac4 = "Contorno (cm): " + req.body.contorno;
-      carac5 = "Largo (cm): " + req.body.largo_medidas; 
-      */
       carac1 = "Sugerencia: " + req.body.sugerencias;
-      carac2 = "Precio: " + req.body.precio + "€";
+      carac2= "Numero de modificaciones: " + req.body.numero_modificaciones;
+      carac3 = "Precio: " + req.body.precio + "€";
   }
 
   // Configurar el transporte con nodemailer usando las variables de entorno

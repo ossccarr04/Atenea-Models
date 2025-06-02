@@ -17,7 +17,7 @@ export class PantalonesComponent {
   userEmail: string = '';
 
   // Precio base de la camiseta
-  precio: number = 3.75;
+  precio: number = 7.85;
   contModificaciones: number = 0;
   precioTotal: number = 0;
   firstLoad: boolean = true;

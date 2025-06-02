@@ -105,7 +105,8 @@ export class FileUploadService {
       case "OTR":
         formData.append('codigo', carac[0]);
         formData.append('sugerencias', carac[1]);
-        formData.append('precio', carac[2]);
+        formData.append('numero_modificaciones', carac[2]);
+        formData.append('precio', carac[3]);
         break;
     }
   }

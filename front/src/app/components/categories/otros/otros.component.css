@@ -141,6 +141,23 @@ button {
   margin: 0 auto; /* <--- Centra horizontalmente */
 }
 
+.precio-total-box {
+  background: #e6f4ea;
+  border: 1px solid #c3ddcc;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #1c1c1c;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-left: 80px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 5%  !important;
+  margin-bottom: 5% !important;
+  /* Centrado debajo de la imagen */
+  text-align: center;
+}
+
 /* 📱 Media query para pantallas pequeñas */
 @media screen and (max-width: 480px) {
   h2, h3 {
