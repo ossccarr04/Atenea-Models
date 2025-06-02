@@ -101,7 +101,8 @@ export default async function handler(req, res) {
       case "OTR":
         modelo = "diseño personalizado";
         carac1 = "Sugerencia: " + (fields.sugerencias ? fields.sugerencias[0] : '');
-        carac2 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
+        carac2 = "Numero de modificaciones: " + (fields.numero_modificaciones ? fields.numero_modificaciones[0] : '');
+        carac3 = "Precio: " + (fields.precio ? fields.precio[0] : '') + " €";
         break;
     }
     const transporter = nodemailer.createTransport({
