@@ -40,7 +40,7 @@ export class OtrosComponent {
   }
 
   updatePrecio() {
-    this.precioTotal = this.precio * this.numeroModificaciones
+    this.precioTotal = Number((this.precio * this.numeroModificaciones).toFixed(2));
   }
 
 

@@ -72,7 +72,7 @@ export class FaldasComponent {
       this.contModificaciones--;
       this.modificacionesEstilo[prop] = false;
     }
-    this.precioTotal = this.precio * this.contModificaciones
+   this.precioTotal = Number((this.precio * this.contModificaciones).toFixed(2));
   }
 
   // Getter que actualiza la imagen automáticamente
