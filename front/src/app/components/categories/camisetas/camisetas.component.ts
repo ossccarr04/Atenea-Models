@@ -59,12 +59,6 @@ originalEstilo!: { [K in keyof typeof this.modificacionesEstilo]: string };
     });
   }
 
-  onTipoPrendaChange(tipo: string) {
-    if (tipo == "tops") {
-      this.route.navigate(['/tops']);
-    }
-
-  }
 
   updatePrecio(prop: keyof typeof this.modificacionesEstilo,value: any) {
     if (!this.originalEstilo) return;

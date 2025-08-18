@@ -25,6 +25,10 @@ export class HeaderComponent {
     window.open(`${baseUrl}/ayuda`, '_blank');
   }
 
+  navigateToContacto(){
+    this.router.navigate(['/contacto']);
+  }
+  
   closeNavbar() {
     const collapseElement = this.navBarCollapsed.nativeElement;
     if (collapseElement.classList.contains('show')) {

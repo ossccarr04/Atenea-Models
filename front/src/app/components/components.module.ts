@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CategoriesModule } from './categories/categories.module';
 import { SobreNosotrosComponent } from './sobre-nosotros/sobre-nosotros.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 
 
@@ -15,7 +16,8 @@ import { AyudaComponent } from './ayuda/ayuda.component';
     HeaderComponent,
     FooterComponent,
     SobreNosotrosComponent,
-    AyudaComponent
+    AyudaComponent,
+    ContactoComponent
   ],
   imports: [
     CommonModule
